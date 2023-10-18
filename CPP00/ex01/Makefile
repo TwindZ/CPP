@@ -6,13 +6,16 @@
 #    By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 16:52:50 by emlamoth          #+#    #+#              #
-#    Updated: 2023/10/18 13:59:58 by emlamoth         ###   ########.fr        #
+#    Updated: 2023/10/18 14:00:02 by emlamoth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
 
-SRCS =	megaphone.cpp	\
+SRCS =	phonebook.cpp		\
+		phonebook.class.cpp \
+
+HEADERS = -I ./phonebook.class.hpp \
 
 OBJS_DIR = ./objs/
 OBJS = $(SRCS:%.cpp=$(OBJS_DIR)%.o)
@@ -32,7 +35,7 @@ $(OBJS_DIR)%.o:%.cpp
 	@$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(HEADERS) -o $(NAME)
 
 clean:
 
