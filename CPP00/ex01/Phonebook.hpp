@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.class.cpp                                :+:      :+:    :+:   */
+/*   Phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:49 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/18 17:54:48 by emlamoth         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:50:17 by emlamoth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "./phonebook.class.hpp"
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+#include "Contact.hpp"
 
-int PhoneBook::_i = 0;
 
-PhoneBook::PhoneBook(void)
-{	
-	PhoneBook::_i++;
-}
 
-PhoneBook::~PhoneBook(void)
+class PhoneBook
 {
-	PhoneBook::_i--;
-}
+public:
+	
+	PhoneBook(void);
+	~PhoneBook(void);
+	Contact contact[8];
 
-int PhoneBook::get_i(void)
-{
-	return(PhoneBook::_i);
-}
+private:
+	
+	
+};
+
+#endif

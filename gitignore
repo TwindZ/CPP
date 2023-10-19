@@ -2,3 +2,6 @@
 megaphone
 phonebook
 .DSstore
+.vscode/
+*/.vscode/
+*/objs/
