@@ -9,12 +9,18 @@ public:
 
 	Contact(void);
 	~Contact(void);
-	void setFirstName(std::string str);
+	
+	std::string getFirstName(void) const;
+	std::string getName(void) const;
+	std::string getNickname(void) const;
+	std::string getPhonenumber(void) const;
+	std::string getDarkestsecret(void) const;
+	
+	bool setFirstName(std::string str);
 	void setName(std::string str);
 	void setNickname(std::string str);
 	void setPhonenumber(std::string str);
 	void setDarkestsecret(std::string str);
-
 private:
 	
 	std::string _first_name;
@@ -23,4 +29,5 @@ private:
 	std::string _phone_number;
 	std::string _darkest_secret;
 };
-#endif;
+
+#endif

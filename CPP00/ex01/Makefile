@@ -6,16 +6,18 @@
 #    By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 16:52:50 by emlamoth          #+#    #+#              #
-#    Updated: 2023/10/18 14:00:02 by emlamoth         ###   ########.fr        #
+#    Updated: 2023/10/23 12:36:09 by emlamoth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 
-SRCS =	phonebook.cpp		\
-		phonebook.class.cpp \
+SRCS =	main.cpp		\
+		Phonebook.cpp	\
+		Contact.cpp		\
 
-HEADERS = -I ./phonebook.class.hpp \
+HEADERS =	-I Phonebook.hpp	\
+			-I	Contact.hpp		\
 
 OBJS_DIR = ./objs/
 OBJS = $(SRCS:%.cpp=$(OBJS_DIR)%.o)
