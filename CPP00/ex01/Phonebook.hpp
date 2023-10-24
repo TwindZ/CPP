@@ -6,7 +6,7 @@
 /*   By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:49 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/24 15:41:34 by emlamoth         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:11:39 by emlamoth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ public:
 	~PhoneBook();
 	Contact 	&getContact(int index);
 	void		addContact(int index);
-	std::string	setInput(std::string msg);
-	void		displayList(void);
-	void		displayContact(Contact &contact) const;
+	std::string	addContactInput(std::string msg);
+	void		displayList(PhoneBook &phonebook)const;
+	void		displayContact(Contact &contact)const;
 	void		increaseListSize();
-	int			getListSize();
-	std::string	searchInput();
+	int			getListSize() const;
+	std::string const trimField(std::string const& str);
 
 private:
 

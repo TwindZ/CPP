@@ -6,7 +6,7 @@
 /*   By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:54 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/24 16:12:31 by emlamoth         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:27:58 by emlamoth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int main(int argc, char **argv)
 
 	if(argc != 1)
 		return (-1);
-	fillContact(phonebook);
 	while(42)
 	{
 		cout << "> ";
@@ -51,7 +50,7 @@ int main(int argc, char **argv)
 				i = 0;
 		}	
 		else if(str.compare("SEARCH") == 0)
-			phonebook.displayList();
+			phonebook.displayList(phonebook);
 		else if(str.compare("EXIT") == 0)
 			break;
 		else
