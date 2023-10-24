@@ -1,5 +1,15 @@
-#include <iostream>
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 10:16:32 by emlamoth          #+#    #+#             */
+/*   Updated: 2023/10/24 14:30:50 by emlamoth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
 
 using std::cin;
@@ -9,11 +19,6 @@ using std::endl;
 Contact::Contact(void)
 {
 	cout << "contructeur de contact" << endl;
-	this->_first_name = "Empty";
-	this->_name = "Empty";
-	this->_nickname = "Empty";
-	this->_phone_number = "Empty";
-	this->_darkest_secret = "Empty";
 }
 Contact::~Contact(void)
 {
@@ -45,10 +50,9 @@ std::string Contact::getDarkestsecret(void) const
 	return this->_darkest_secret;
 }
 
-bool Contact::setFirstName(std::string str)
+void Contact::setFirstName(std::string str)
 {
 	this->_first_name = str;
-	return true;
 }
 void Contact::setName(std::string str)
 {

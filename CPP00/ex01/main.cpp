@@ -6,17 +6,27 @@
 /*   By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:54 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/23 17:33:12 by emlamoth         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:12:31 by emlamoth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Phonebook.hpp"
-#include "Contact.hpp"
 
 using std::cin;
 using std::cout;
 using std::endl;
+
+void fillContact(PhoneBook &phonebook)
+{
+	for(int i = 0; i < 8; i++)
+	{
+		phonebook.getContact(i).setFirstName("Bob");
+		phonebook.getContact(i).setName("Binnette");
+		phonebook.getContact(i).setNickname("Bob the builder");
+		phonebook.getContact(i).setPhonenumber("911");
+		phonebook.getContact(i).setDarkestsecret("True name Barbara");
+	}
+}
 
 int main(int argc, char **argv)
 {
@@ -27,30 +37,28 @@ int main(int argc, char **argv)
 
 	if(argc != 1)
 		return (-1);
+	fillContact(phonebook);
 	while(42)
 	{
 		cout << "> ";
-		cin >> str;
+		std::getline(cin, str);
 		if(str.compare("ADD") == 0)
-			phonebook.addContact(i);
-		else if(str.compare("SEARCH") == 0)
 		{
-			cout << phonebook.getContact(0).getFirstName() << endl;
-			cout << phonebook.getContact(0).getName() << endl;
-			cout << phonebook.getContact(0).getNickname() << endl;
-			cout << phonebook.getContact(0).getPhonenumber() << endl;
-			cout << phonebook.getContact(0).getDarkestsecret() << endl;
-			cout << phonebook.getContact(1).getFirstName() << endl;
-			cout << phonebook.getContact(1).getName() << endl;
-			cout << phonebook.getContact(1).getNickname() << endl;
-			cout << phonebook.getContact(1).getPhonenumber() << endl;
-			cout << phonebook.getContact(1).getDarkestsecret() << endl;
-		}
+			phonebook.addContact(i);
+			if(i < 7)
+				i++;
+			else
+				i = 0;
+		}	
+		else if(str.compare("SEARCH") == 0)
+			phonebook.displayList();
 		else if(str.compare("EXIT") == 0)
 			break;
-		if(i < 7)
-			i++;
 		else
-			i = 0;
+		{
+			cout << "No command found !" << endl;
+			cout << "Type ADD, SEARCH or EXIT" << endl;
+
+		}
 	}
 }

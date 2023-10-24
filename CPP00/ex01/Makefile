@@ -6,7 +6,7 @@
 #    By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 16:52:50 by emlamoth          #+#    #+#              #
-#    Updated: 2023/10/23 12:36:09 by emlamoth         ###   ########.fr        #
+#    Updated: 2023/10/24 12:26:07 by emlamoth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(HEADERS) -o $(NAME)
 
 clean:
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	rm -f $(NAME)
