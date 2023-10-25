@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Weapon.hpp"
 
 using std::cout;
 using std::endl;
@@ -12,13 +13,14 @@ class HumanA
 {
 	public:
 
-		HumanA( void );
+		HumanA(string Name, Weapon *weapon);
 		~HumanA( void );
-
-
+		void attack();
+		Weapon *getWeapon();
 	private:
 
-		string	_name;
+		string _name;
+		Weapon *_weapon;
 
 };
 

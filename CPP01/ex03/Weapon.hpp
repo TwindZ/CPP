@@ -13,9 +13,10 @@ class Weapon
 	public:
 
 		Weapon( void );
+		Weapon(string type);
 		~Weapon( void );
 		string const getType()const;
-		void setType(string &type);
+		void setType(string type);
 
 	private:
 
