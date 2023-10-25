@@ -4,6 +4,6 @@ megaphone
 */ex*/ex*
 .DS_store
 */.DS_store
-.vscode/
-*/.vscode/
-*/objs/
+.vscode
+*/.vscode
+*/objs
