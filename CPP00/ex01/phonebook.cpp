@@ -6,7 +6,7 @@
 /*   By: emman <emman@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:49 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/24 21:20:28 by emman            ###   ########.fr       */
+/*   Updated: 2023/10/24 21:25:23 by emman            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	PhoneBook::displayList(PhoneBook &phonebook)const
 		cout << "-----------------------------------" << endl;
 		for(int i = 0; i < phonebook.getListSize(); i++)
 		{
-			cout << i << "|";
+			cout << i + 1 << "|";
 			cout << std::setw(10) << phonebook.trimField(phonebook.getContact(i).getFirstName()) << "|";
 			cout << std::setw(10) << phonebook.trimField(phonebook.getContact(i).getName()) << "|";
 			cout << std::setw(10) << phonebook.trimField(phonebook.getContact(i).getNickname()) << "|" << endl;
@@ -113,12 +113,12 @@ void	PhoneBook::displayList(PhoneBook &phonebook)const
 		else
 		{
 			if(input.size() > 1 || !std::isdigit((int)input[0])
-				|| std::stoi(input) > this->_listize - 1)
+				|| std::stoi(input) > this->_listize)
 				cout << "Invalid index!" << endl;
 			else
 			{
 				valid = true;
-				this->displayContact(phonebook.getContact(std::stoi(input)));
+				this->displayContact(phonebook.getContact(std::stoi(input) - 1));
 			}	
 		}
 	} while (!valid);
