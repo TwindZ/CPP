@@ -6,7 +6,7 @@
 /*   By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:49 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/25 11:08:22 by emlamoth         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:02:44 by emlamoth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ using std::cout;
 using std::cin;
 using std::endl;
 PhoneBook::PhoneBook(void) : _listize(0), _addIndex(0)
-{	
-	cout << "contructeur de Phonebook" << endl;
+{
+	
 }
 
 PhoneBook::~PhoneBook(void)
 {
-	cout << "destructeur de Phonebook" << endl;
+	
 }
 
 void	PhoneBook::banner()
@@ -138,12 +138,12 @@ void	PhoneBook::displayList(PhoneBook &phonebook)const
 		else
 		{
 			if(input.size() > 1 || !std::isdigit((int)input[0])
-				|| std::stoi(input) > phonebook._listize || std::stoi(input) < 1)
+				|| std::atoi(input.c_str()) > phonebook._listize || std::atoi(input.c_str()) < 1)
 				cout << "Invalid index!" << endl;
 			else
 			{
 				valid = true;
-				phonebook.displayContact(phonebook.getContact(std::stoi(input) - 1));
+				phonebook.displayContact(phonebook.getContact(std::atoi(input.c_str()) - 1));
 			}	
 		}
 	} while (!valid);

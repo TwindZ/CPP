@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emman <emman@student.42.fr>                +#+  +:+       +#+        */
+/*   By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:16:32 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/24 20:40:55 by emman            ###   ########.fr       */
+/*   Updated: 2023/10/25 11:48:08 by emlamoth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ using std::endl;
 
 Contact::Contact(void)
 {
-	cout << "contructeur de contact" << endl;
 }
 Contact::~Contact(void)
 {
-	cout << "destructeur de contact" << endl;
 }
 
 std::string	const& Contact::getFirstName(void) const

@@ -6,7 +6,7 @@
 #    By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 16:52:50 by emlamoth          #+#    #+#              #
-#    Updated: 2023/10/18 13:59:58 by emlamoth         ###   ########.fr        #
+#    Updated: 2023/10/25 12:30:34 by emlamoth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS = $(SRCS:%.cpp=$(OBJS_DIR)%.o)
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-CC = g++
+CC = c++
 
 GREEN = \033[1;32m
 RED = \033[1;31m
@@ -35,7 +35,8 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-
+	rm -rf $(OBJS_DIR)
+	
 fclean: clean
 	rm -f $(NAME)
 

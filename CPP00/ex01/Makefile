@@ -6,7 +6,7 @@
 #    By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 16:52:50 by emlamoth          #+#    #+#              #
-#    Updated: 2023/10/24 12:26:07 by emlamoth         ###   ########.fr        #
+#    Updated: 2023/10/25 12:44:50 by emlamoth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,13 @@ SRCS =	main.cpp		\
 		Contact.cpp		\
 
 HEADERS =	-I Phonebook.hpp	\
-			-I	Contact.hpp		\
 
 OBJS_DIR = ./objs/
 OBJS = $(SRCS:%.cpp=$(OBJS_DIR)%.o)
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-CC = g++
+CC = c++
 
 GREEN = \033[1;32m
 RED = \033[1;31m
