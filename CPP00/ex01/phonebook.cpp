@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.cpp                                      :+:      :+:    :+:   */
+/*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emman <emman@student.42.fr>                +#+  +:+       +#+        */
+/*   By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:49 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/24 21:37:11 by emman            ###   ########.fr       */
+/*   Updated: 2023/10/25 11:08:22 by emlamoth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 using std::cout;
 using std::cin;
 using std::endl;
-PhoneBook::PhoneBook(void) : _listize(0)
+PhoneBook::PhoneBook(void) : _listize(0), _addIndex(0)
 {	
 	cout << "contructeur de Phonebook" << endl;
 }
@@ -23,6 +23,13 @@ PhoneBook::PhoneBook(void) : _listize(0)
 PhoneBook::~PhoneBook(void)
 {
 	cout << "destructeur de Phonebook" << endl;
+}
+
+void	PhoneBook::banner()
+{
+	cout << "--------------------------------------------" << endl;
+	cout << "|           PHONEBOOK by emlamoth          |" << endl;
+	cout << "--------------------------------------------" << endl;
 }
 
 Contact & PhoneBook::getContact(int index)
@@ -56,15 +63,16 @@ void	PhoneBook::increaseListSize()
 		this->_listize += 1;
 }
 
-void	PhoneBook::addContact(int index)
+void	PhoneBook::addContact()
 {
-	PhoneBook::getContact(index).setFirstName(PhoneBook::addContactInput("Firstname :"));
-	PhoneBook::getContact(index).setName(PhoneBook::addContactInput("Name :"));
-	PhoneBook::getContact(index).setNickname(PhoneBook::addContactInput("Nickname :"));
-	PhoneBook::getContact(index).setPhonenumber(PhoneBook::addContactInput("Phone number :"));
-	PhoneBook::getContact(index).setDarkestsecret(PhoneBook::addContactInput("Darkest secret :"));
-	PhoneBook::increaseListSize();
-	cout << "---New contact succesfully added---" << endl;
+	this->getContact(this->getAddIndex()).setFirstName(this->addContactInput("Firstname :"));
+	this->getContact(this->getAddIndex()).setName(this->addContactInput("Name :"));
+	this->getContact(this->getAddIndex()).setNickname(this->addContactInput("Nickname :"));
+	this->getContact(this->getAddIndex()).setPhonenumber(this->addContactInput("Phone number :"));
+	this->getContact(this->getAddIndex()).setDarkestsecret(this->addContactInput("Darkest secret :"));
+	this->increaseListSize();
+	this->iterAddIndex();
+	cout << "-------New contact succesfully added--------" << endl;
 }
 
 std::string	const PhoneBook::trimField(std::string const& str)
@@ -84,42 +92,58 @@ void	PhoneBook::displayContact(Contact &contact) const
 	cout << "Darkest secret\t: "<<contact.getDarkestsecret() << endl << endl;
 }
 
+int	PhoneBook::getAddIndex()const
+{
+	return this->_addIndex;
+}
+
+
+void	PhoneBook::iterAddIndex()
+{
+	if(this->_addIndex < 7)
+		this->_addIndex++;
+	else
+		this->_addIndex = 0;
+}
+
 void	PhoneBook::displayList(PhoneBook &phonebook)const
 {
 	bool valid;
 	std::string input = "";
-	if(this->_listize == 0)
+	if(phonebook._listize == 0)
 	{
-		cout << "---------No contact found----------" << endl;
+		cout << "--------------No contact found--------------" << endl;
 		return ;
 	}
 	do
 	{
 		cout << endl;
-		cout << "--------------CONTACTS-------------" << endl;
-		cout << "#|Firstname |   Name   |  Nickname|" << endl;
-		cout << "-----------------------------------" << endl;
+		cout << "-------------------CONTACTS-----------------" << endl;
+		cout << "  Index # |Firstname |   Name   |Nickname  |" << endl;
+		cout << "--------------------------------------------" << endl;
 		for(int i = 0; i < phonebook.getListSize(); i++)
 		{
-			cout << i + 1 << "|";
+			cout << std::setw(10) << i + 1 << "|";
 			cout << std::setw(10) << phonebook.trimField(phonebook.getContact(i).getFirstName()) << "|";
 			cout << std::setw(10) << phonebook.trimField(phonebook.getContact(i).getName()) << "|";
 			cout << std::setw(10) << phonebook.trimField(phonebook.getContact(i).getNickname()) << "|" << endl;
 		}
-		cout << "-----------------------------------" << endl;
+		cout << "--------------------------------------------" << endl;
 		cout << endl << "Choose a contact index or type \"q\" to exit listing" << endl << ">> ";
 		std::getline(cin, input);
 		if(!input.compare("q"))
 			return ;
+		else if (cin.fail())
+			exit(-1);
 		else
 		{
 			if(input.size() > 1 || !std::isdigit((int)input[0])
-				|| std::stoi(input) > this->_listize)
+				|| std::stoi(input) > phonebook._listize || std::stoi(input) < 1)
 				cout << "Invalid index!" << endl;
 			else
 			{
 				valid = true;
-				this->displayContact(phonebook.getContact(std::stoi(input) - 1));
+				phonebook.displayContact(phonebook.getContact(std::stoi(input) - 1));
 			}	
 		}
 	} while (!valid);

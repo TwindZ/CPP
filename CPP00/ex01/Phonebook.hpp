@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emman <emman@student.42.fr>                +#+  +:+       +#+        */
+/*   By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:49 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/24 20:53:24 by emman            ###   ########.fr       */
+/*   Updated: 2023/10/25 11:09:19 by emlamoth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,22 @@ public:
 	PhoneBook();
 	~PhoneBook();
 	Contact &			getContact(int index);
-	void				addContact(int index);
+	void				addContact();
 	std::string	const 	addContactInput(std::string msg);
 	void				displayList(PhoneBook &phonebook)const;
 	void				displayContact(Contact &contact)const;
 	void				increaseListSize();
 	int					getListSize() const;
 	std::string const	trimField(std::string const& str);
+	int					getAddIndex()const;
+	void				iterAddIndex();
+	void				banner();
 
 private:
 
 	Contact		_contact[8];
 	int			_listize;
+	int			_addIndex;
 
 };
 

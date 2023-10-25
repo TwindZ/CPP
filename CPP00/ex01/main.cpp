@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emman <emman@student.42.fr>                +#+  +:+       +#+        */
+/*   By: emlamoth <emlamoth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:54 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/24 21:33:03 by emman            ###   ########.fr       */
+/*   Updated: 2023/10/25 11:09:41 by emlamoth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,24 @@ int main(int argc, char **argv)
 	(void)	argv;
 	std::string str;
 	PhoneBook phonebook;
-	int i = 0;
 
 	if(argc != 1)
 		return (-1);
-	cout << "-----------------------------------" << endl;
-	cout << "|      PHONEBOOK by emlamoth      |" << endl;
-	cout << "-----------------------------------" << endl;
-	
+	phonebook.banner();
 	while(42)
 	{
-		cout << "-----Type ADD, SEARCH or EXIT------" << endl;
+		cout << "---------Type ADD, SEARCH or EXIT-----------" << endl;
 		cout << "> ";
 		std::getline(cin, str);
 		if(!str.compare("ADD"))
-		{
-			phonebook.addContact(i);
-			if(i < 7)
-				i++;
-			else
-				i = 0;
-		}	
+			phonebook.addContact();
 		else if(!str.compare("SEARCH"))
 			phonebook.displayList(phonebook);
 		else if(!str.compare("EXIT"))
 			break;
+		else if (cin.fail())
+			exit(-1);
 		else
-		{
 			cout << "Command not found !" << endl;
-		}
 	}
 }
