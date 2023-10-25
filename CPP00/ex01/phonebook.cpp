@@ -6,7 +6,7 @@
 /*   By: emman <emman@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:49 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/24 21:25:23 by emman            ###   ########.fr       */
+/*   Updated: 2023/10/24 21:37:11 by emman            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	PhoneBook::addContact(int index)
 	PhoneBook::getContact(index).setPhonenumber(PhoneBook::addContactInput("Phone number :"));
 	PhoneBook::getContact(index).setDarkestsecret(PhoneBook::addContactInput("Darkest secret :"));
 	PhoneBook::increaseListSize();
-	cout << "--New contact succesfully added--" << endl;
+	cout << "---New contact succesfully added---" << endl;
 }
 
 std::string	const PhoneBook::trimField(std::string const& str)
@@ -76,11 +76,12 @@ std::string	const PhoneBook::trimField(std::string const& str)
 
 void	PhoneBook::displayContact(Contact &contact) const
 {
+	cout << endl;
 	cout << "Firstname\t: "<<contact.getFirstName() << endl;
 	cout << "Name\t\t: "<<contact.getName() << endl;
 	cout << "Nickname\t: "<<contact.getNickname() << endl;
 	cout << "Phone number\t: "<<contact.getPhonenumber() << endl;
-	cout << "Darkest secret\t: "<<contact.getDarkestsecret() << endl;
+	cout << "Darkest secret\t: "<<contact.getDarkestsecret() << endl << endl;
 }
 
 void	PhoneBook::displayList(PhoneBook &phonebook)const
@@ -89,7 +90,7 @@ void	PhoneBook::displayList(PhoneBook &phonebook)const
 	std::string input = "";
 	if(this->_listize == 0)
 	{
-		cout << "No contact found" << endl;
+		cout << "---------No contact found----------" << endl;
 		return ;
 	}
 	do

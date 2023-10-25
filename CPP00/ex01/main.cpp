@@ -6,7 +6,7 @@
 /*   By: emman <emman@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 10:40:54 by emlamoth          #+#    #+#             */
-/*   Updated: 2023/10/24 20:44:06 by emman            ###   ########.fr       */
+/*   Updated: 2023/10/24 21:33:03 by emman            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,13 @@ int main(int argc, char **argv)
 
 	if(argc != 1)
 		return (-1);
+	cout << "-----------------------------------" << endl;
+	cout << "|      PHONEBOOK by emlamoth      |" << endl;
+	cout << "-----------------------------------" << endl;
+	
 	while(42)
 	{
+		cout << "-----Type ADD, SEARCH or EXIT------" << endl;
 		cout << "> ";
 		std::getline(cin, str);
 		if(!str.compare("ADD"))
@@ -44,7 +49,6 @@ int main(int argc, char **argv)
 		else
 		{
 			cout << "Command not found !" << endl;
-			cout << "Type ADD, SEARCH or EXIT" << endl;
 		}
 	}
 }
