@@ -15,12 +15,14 @@ class HumanB
 
 		HumanB(string name);
 		~HumanB( void );
+		void setWeapon(Weapon &weapon);
 		void attack();
+		Weapon *getWeapon();
 
 	private:
 
 		string _name;
-		Weapon _weapon;
+		Weapon* _weapon;
 
 };
 

@@ -7,16 +7,34 @@ using std::string;
 
 int main()
 {
-	string hello = "HI THIS IS BRAIN";
-	string *helloPtr = &hello;
-	string &helloRef = hello;
+	string str = "HI THIS IS BRAIN";
+	string *stringPtr = &str;
+	string &stringRef = str;
 
-	cout << "hello adress\t: " << &hello << endl;
-	cout << "helloPtr adress\t: "<< &helloPtr << endl;
-	cout << "helloRef adress\t: "<< &helloRef << endl;
-	
-	cout << "hello data\t: " << hello << endl;
-	cout << "*helloPtr data\t: " << *helloPtr << endl;
-	cout << "helloRef data\t: " << helloRef << endl;
+	cout << "string address\t\t: " << &str << endl;
+	cout << "stringPtr address\t: "<< &stringPtr << endl;
+	cout << "stringRef address\t: "<< &stringRef << endl;
+	cout << endl;
+	cout << "**************************************************"<< endl;
+	cout << endl;
+	cout << "string data\t: " << str << endl;
+	cout << "*stringPtr data\t: " << *stringPtr << endl;
+	cout << "stringRef data\t: " << stringRef << endl;
+	cout << endl;
+	cout << "**************************************************"<< endl;
 
+	cout << endl;
+	cout << "string address\t\t: " << &str << endl;
+	cout << "stringPtr address\t: "<< &stringPtr << endl;
+	cout << "stringRef address\t: "<< &stringRef << endl;
+	cout << endl;
+	cout << "**************************************************"<< endl;
+
+	cout << endl;
+	str = "salut";
+	cout << "string data\t: " << str << endl;
+	*stringPtr = "bonjour";
+	cout << "*stringPtr data\t: " << str << endl;
+	stringRef = "allo";
+	cout << "stringRef data\t: " << str << endl;
 }

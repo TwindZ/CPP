@@ -13,14 +13,14 @@ class HumanA
 {
 	public:
 
-		HumanA(string Name, Weapon *weapon);
+		HumanA(string Name, Weapon &weapon);
 		~HumanA( void );
 		void attack();
-		Weapon *getWeapon();
+		Weapon& getWeapon();
 	private:
 
 		string _name;
-		Weapon *_weapon;
+		Weapon& _weapon;
 
 };
 

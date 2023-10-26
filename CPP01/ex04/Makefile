@@ -1,10 +1,8 @@
-NAME = ex01
+NAME = ex04
 
 SRCS =	main.cpp		\
-		zombieHorde.cpp \
-		Zombie.cpp		\
 
-HEADERS =	-I Zombie.hpp	\
+HEADERS = 
 
 OBJS_DIR = ./objs/
 OBJS = $(SRCS:%.cpp=$(OBJS_DIR)%.o)

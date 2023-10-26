@@ -2,12 +2,7 @@
 
 Weapon::Weapon(string type): _type(type)
 {
-	cout << "Weapon constructor call" << endl;
-}
-
-Weapon::Weapon()
-{
-	cout << "Weapon constructor call" << endl;
+	cout << "Weapon constructor call with type : " << this->_type << endl;
 }
 
 Weapon::~Weapon()
@@ -17,6 +12,7 @@ Weapon::~Weapon()
 
 void Weapon::setType(string name)
 {
+	cout << "Weapon change from \"" << _type << "\" to \"" << name << "\"" << endl;
 	this->_type = name;
 }
 

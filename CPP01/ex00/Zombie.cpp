@@ -7,12 +7,12 @@ Zombie::Zombie() : _name("Zombie")
 
 Zombie::Zombie(string name) : _name(name)
 {
-	cout << "Zombie constructor call with name :"<< name << endl;
+	cout << "Zombie constructor call with name :"<< this->_name << endl;
 }
 
 Zombie::~Zombie()
 {
-	cout << "Zombie destructor call" << endl;
+	cout << "Zombie destructor call" << this->_name << endl;
 }
 
 // void	Zombie::setName(string name)
