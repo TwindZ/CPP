@@ -12,7 +12,7 @@ Zombie::Zombie(string name) : _name(name)
 
 Zombie::~Zombie()
 {
-	cout << "Zombie destructor call" << this->_name << endl;
+	cout << "Zombie destructor call with name :" << this->_name << endl;
 }
 
 // void	Zombie::setName(string name)

@@ -7,7 +7,7 @@ HumanB::HumanB(string name): _name(name)
 
 HumanB::~HumanB()
 {
-	cout << "HumanB destructor call" << endl;
+	cout << "HumanB destructor call with name : " << this->_name << endl;
 }
 
 void HumanB::attack()
@@ -21,7 +21,7 @@ void HumanB::setWeapon(Weapon &weapon)
 	cout << this->_name << " got " << _weapon->getType() << endl;
 }
 
-Weapon *HumanB::getWeapon()
+Weapon const* HumanB::getWeapon()const
 {
 	return (this->_weapon);
 }

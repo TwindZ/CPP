@@ -8,7 +8,7 @@ HumanA::HumanA(string name, Weapon &weapon): _name(name), _weapon(weapon)
 
 HumanA::~HumanA()
 {
-	cout << "HumanA destructor call" << endl;
+	cout << "HumanA destructor call with name : " << this->_name << endl;
 }
 
 void HumanA::attack()
@@ -16,7 +16,7 @@ void HumanA::attack()
 	cout << this->_name << " attacks with their " << this->getWeapon().getType() << endl;
 }
 
-Weapon& HumanA::getWeapon()
+Weapon const& HumanA::getWeapon() const
 {
 	return this->_weapon;
 }

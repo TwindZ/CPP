@@ -17,7 +17,7 @@ class HumanB
 		~HumanB( void );
 		void setWeapon(Weapon &weapon);
 		void attack();
-		Weapon *getWeapon();
+		Weapon const* getWeapon() const;
 
 	private:
 

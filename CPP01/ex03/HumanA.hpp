@@ -16,7 +16,7 @@ class HumanA
 		HumanA(string Name, Weapon &weapon);
 		~HumanA( void );
 		void attack();
-		Weapon& getWeapon();
+		Weapon const& getWeapon() const;
 	private:
 
 		string _name;
