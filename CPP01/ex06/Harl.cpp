@@ -60,7 +60,6 @@ void	Harl::complain(string filter)
 			harl.error();
 			break;
 		case 4:
-			cout << "Error : Bad filter" << endl ;
-			cout << "Filters : DEBUG, INFO, WARNING or ERROR" << endl ;
+			cout << "Probably complaining about insignificant problems" << endl;
 	}
 }
