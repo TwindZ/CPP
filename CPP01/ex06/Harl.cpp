@@ -1,0 +1,66 @@
+#include "Harl.hpp"
+
+Harl::Harl()
+{
+
+}
+Harl::~Harl()
+{
+
+}
+
+void	Harl::debug()
+{
+	cout << "[ DEBUG ]" << endl ;
+	cout << "I love having extra bacon for my 7XL-double-cheese-triple";
+	cout << "-pickle-specialketchup burger. I really do !" << endl;
+	cout << endl ;
+}
+void	Harl::info()
+{
+	cout << "[ INFO ]" << endl ;
+	cout << "I cannot believe adding extra bacon costs more money. ";
+	cout << "You didn’t put enough bacon in my burger ! If you did, I wouldn’t be asking for more !" << endl;
+	cout << endl ;
+}
+void	Harl::warning()
+{
+	cout << "[ WARNING ]" << endl ;
+	cout << "I think I deserve to have some extra bacon for free. ";
+	cout << "I’ve been coming for years whereas you started working here since last month." << endl;
+	cout << endl ;
+}
+void	Harl::error()
+{
+	cout << "[ ERROR ]" << endl ;
+	cout << "This is unacceptable ! I want to speak to the manager now." << endl;
+	cout << endl ;
+}
+
+void	Harl::complain(string filter)
+{
+	int i;
+	Harl harl;
+
+	string filters[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	for (i = 0; i < 4; i++)
+	{
+		if(filter == filters[i])
+			break;
+	}
+	switch(i)
+	{
+		case 0:
+			harl.debug();
+		case 1:
+			harl.info();
+		case 2:
+			harl.warning();
+		case 3:
+			harl.error();
+			break;
+		case 4:
+			cout << "Error : Bad filter" << endl ;
+			cout << "Filters : DEBUG, INFO, WARNING or ERROR" << endl ;
+	}
+}
