@@ -4,10 +4,15 @@
 using std::cout;
 int main()
 {
-	Fixed fixed1;
-	Fixed fixed2;
-	fixed1.setRawBits(0);
-	fixed2.setRawBits(3);
-	fixed1 = fixed2;
-	cout << fixed1;
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
+
+	c = b;
+
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+
+	return 0;
 }
