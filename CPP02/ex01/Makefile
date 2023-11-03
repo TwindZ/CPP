@@ -27,6 +27,10 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(HEADERS) $(OBJS) -o $(NAME)
 	@echo "${GREEN}$(NAME) COMPILED${NC}"
 
+run: re
+
+	./$(NAME)
+
 clean:
 
 	@rm -rf $(OBJS_DIR)
@@ -41,4 +45,4 @@ bonus: re
 
 re: fclean all
 
-.PHONY: all clean fclean bonus re
+.PHONY: all clean fclean bonus re run

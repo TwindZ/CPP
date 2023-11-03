@@ -11,7 +11,7 @@ Fixed::Fixed(): _rawBits(0)
 Fixed::Fixed(Fixed const& fixed)
 {
 	cout << "Copy constructor call" << endl;
-	this->setRawBits(fixed.getRawBits());
+	*this = fixed;
 }
 
 Fixed::~Fixed()
@@ -19,7 +19,7 @@ Fixed::~Fixed()
 	cout << "Destructor call" << endl;
 }
 
-Fixed & Fixed::operator=(Fixed & fixed)
+Fixed const& Fixed::operator=(Fixed const& fixed)
 {
 	cout << "Copy assignment operator called" << endl;
 	if(&fixed != this)
