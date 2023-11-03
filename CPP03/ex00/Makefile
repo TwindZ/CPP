@@ -1,9 +1,9 @@
-NAME = ex02
+NAME = ex00
 
 SRCS =	main.cpp		\
-		Fixed.cpp
+		ClapTrap.cpp	\
 
-HEADERS = -I Fixed.hpp
+HEADERS = -I ClapTrap.hpp
 
 OBJS_DIR = ./objs/
 OBJS = $(SRCS:%.cpp=$(OBJS_DIR)%.o)
