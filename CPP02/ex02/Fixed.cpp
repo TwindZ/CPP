@@ -30,7 +30,7 @@ Fixed::~Fixed()
 	cout << "Destructor call" << endl;
 }
 
-Fixed & Fixed::operator=(Fixed const& fixed)
+Fixed const& Fixed::operator=(Fixed const& fixed)
 {
 	cout << "Copy assignment operator called" << endl;
 	if(&fixed != this)
@@ -77,16 +77,21 @@ Fixed & Fixed::operator--()
 	return *this;
 }
 
-// void Fixed::operator++(int n)
-// {
-// 	(void) n;
-// }
+Fixed Fixed::operator++(int n)
+{
+	(void) n;
+	Fixed copy(*this);
+	this->setRawBits(this->getRawBits() + 1);
+	return copy;
+}
 
-// void Fixed::operator--(int n)
-// {
-// 	(void) n;
-// }
-
+Fixed Fixed::operator--(int n)
+{
+	(void) n;
+	Fixed copy(*this);
+	this->setRawBits(this->getRawBits() - 1);
+	return copy;
+}
 
 Fixed & Fixed::operator+(Fixed const& n)
 {
@@ -155,4 +160,32 @@ bool Fixed::operator<=(Fixed const& n)
 	if(this->getRawBits() <= n.getRawBits())
 		return true;
 	return false;
+}
+
+Fixed const& Fixed::min(Fixed const& fixed1, Fixed const& fixed2)
+{
+	if(fixed1.getRawBits() < fixed2.getRawBits())
+		return fixed1;
+	return fixed2;
+}
+
+Fixed const& Fixed::max(Fixed const& fixed1, Fixed const& fixed2)
+{
+	if(fixed1.getRawBits() > fixed2.getRawBits())
+		return fixed1;
+	return fixed2;
+}
+
+Fixed & Fixed::min(Fixed & fixed1, Fixed & fixed2)
+{
+	if(fixed1.getRawBits() < fixed2.getRawBits())
+		return fixed1;
+	return fixed2;
+}
+
+Fixed & Fixed::max(Fixed & fixed1, Fixed & fixed2)
+{
+	if(fixed1.getRawBits() > fixed2.getRawBits())
+		return fixed1;
+	return fixed2;
 }
