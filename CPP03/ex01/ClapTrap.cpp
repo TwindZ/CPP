@@ -11,7 +11,8 @@ ClapTrap::ClapTrap():_name(""), _hitPoints(10), _energyPoints(10), _attackDamage
 	cout << "Default Constructor called" << endl;
 }
 
-ClapTrap::ClapTrap(string const name):_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap(string const& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage):
+_name(name), _hitPoints(hitPoints), _energyPoints(energyPoints), _attackDamage(attackDamage)
 {
 	cout << "ClapTrap "<< name << " spawned !" << endl;
 }
