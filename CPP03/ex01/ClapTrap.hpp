@@ -12,11 +12,11 @@ class ClapTrap
 		unsigned int _hitPoints;
 		unsigned int _energyPoints;
 		unsigned int _attackDamage;
-		ClapTrap();
 	
 	public:
 
-		ClapTrap(string const name);
+		ClapTrap();
+		ClapTrap(ClapTrap const& claptrap);
 		ClapTrap(string const& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage);
 		ClapTrap const& operator=(ClapTrap const& clapTrap);
 		~ClapTrap();

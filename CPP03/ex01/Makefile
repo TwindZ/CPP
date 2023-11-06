@@ -4,8 +4,8 @@ SRCS =	main.cpp		\
 		ClapTrap.cpp	\
 		ScavTrap.cpp	\
 
-HEADERS = 	-I ClapTrap.hpp \
-			-I ScavTrap.hpp	\
+HEADERS = 	-I ScavTrap.hpp \
+			-I ClapTrap.hpp	\
 
 
 OBJS_DIR = ./objs/

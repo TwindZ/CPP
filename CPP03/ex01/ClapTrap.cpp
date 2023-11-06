@@ -8,7 +8,7 @@ using std::string;
 //-------------------------COPLIEN
 ClapTrap::ClapTrap():_name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	cout << "Default Constructor called" << endl;
+	cout << "Default ClapTrap Constructor called" << endl;
 }
 
 ClapTrap::ClapTrap(string const& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage):
