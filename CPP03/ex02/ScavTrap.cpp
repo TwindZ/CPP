@@ -63,6 +63,7 @@ void ScavTrap::attack(string const& target)
 
 void ScavTrap::guardGate()
 {
+	
 	if(_hitPoints > 0)
 	{
 		if(_guardGate == false)
@@ -77,8 +78,7 @@ void ScavTrap::guardGate()
 		}
 	}
 	else
-			cout << _name << " can't guard gate because he's dead !" << endl;
-
+			cout << _name << " can't attack because he's dead !" << endl;
 }
 
 void ScavTrap::status()const

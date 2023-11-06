@@ -5,8 +5,7 @@ using std::cout;
 using std::endl;
 using std::string;
 
-//-------------------------COPLIEN
-ClapTrap::ClapTrap():_name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap()
 {
 	cout << "Default Constructor called" << endl;
 }
@@ -35,10 +34,9 @@ ClapTrap const& ClapTrap::operator=(ClapTrap const& clapTrap)
 
 ClapTrap::~ClapTrap()
 {
-	cout << "ClapTrap " << _name  << " dispawned !"<< endl;
+	cout << "ClapTrap " << _name  << " despawned !"<< endl;
 }
 
-//-------------------------GETTERS & SETTER
 string const ClapTrap::getName()const
 {
 	return _name;
@@ -59,13 +57,6 @@ unsigned int ClapTrap::getAttackDamage()const
 	return _attackDamage;
 }
 
-void ClapTrap::setAttackDamage(unsigned int amount)
-{
-	cout << _name << " equip a weapon with " << amount << " attack damage !" << endl;
-	_attackDamage = amount;
-}
-
-//-------------------------MEMBER FUNCTIONS
 void ClapTrap::attack(string const& target)
 {
 	if(_hitPoints > 0 && _energyPoints > 0)
@@ -103,7 +94,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if(_hitPoints > 0)
 	{
 		cout << _name << " trying to repair " << amount << " hit points..."<< endl;
-		if(_hitPoints < 10 && _hitPoints > 0 && _energyPoints > 0)
+		if(_hitPoints < 10 && _energyPoints > 0)
 		{
 			_hitPoints += amount;
 			if(_hitPoints > 10)
@@ -116,10 +107,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 		}
 		else
 		{
-			if(_hitPoints == 10)
-				cout << _name << " can't repair because he's already full of hit points !" << endl;
-			else
+			if(_energyPoints == 0)
 				cout << _name << " can't repair because he has no energy !" << endl;
+			else
+				cout << _name << " can't repair because he's already full of hit points !" << endl;
+				
 		}
 	}
 	else
@@ -133,20 +125,4 @@ void ClapTrap::status()const
 	cout << " | Hp : " << _hitPoints;
 	cout << " | Ep : " << _energyPoints;
 	cout << " | Ad : " << _attackDamage << " |" << endl << endl;
-}
-
-void ClapTrap::battle(ClapTrap & target)
-{
-	if(_hitPoints > 0 && _energyPoints > 0)
-	{
-		this->attack(target.getName());
-		target.takeDamage(this->_attackDamage);
-	}
-	else
-	{
-		if(_hitPoints == 0)
-			cout << _name << " can't attack because he's dead !" << endl;
-		else
-			cout << _name << " can't attack because he has no energy !" << endl;
-	}
 }

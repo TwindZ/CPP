@@ -25,12 +25,10 @@ class ClapTrap
 		unsigned int getHitPoints()const;
 		unsigned int getEnergyPoints()const;
 		unsigned int getAttackDamage()const;
-		void setAttackDamage(unsigned int amount);
 
 		void attack(string const& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 		void status()const;
-		void battle(ClapTrap & target);
 };
 #endif

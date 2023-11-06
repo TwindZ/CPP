@@ -6,9 +6,34 @@ using std::cout;
 using std::endl;
 int main()
 {
-	ScavTrap scavTrap("John", 10, 10, 10);
-	cout << scavTrap.getName() << endl;
-	cout << scavTrap.getHitPoints() << endl;
-	cout << scavTrap.getEnergyPoints() << endl;
-	cout << scavTrap.getAttackDamage() << endl;
+	ScavTrap john("John");
+	john.status();
+
+	ScavTrap johncopy(john);
+	johncopy.status();
+
+	ScavTrap bob("Bob");
+
+	john.status();
+	bob.status();
+
+	john.guardGate();
+
+	john.battle(john);
+
+	john.status();
+	bob.status();
+	bob.battle(john);
+	
+	john.status();
+	bob.status();
+
+	bob = john;
+	john.status();
+	bob.status();
+	bob.guardGate();
+	john.status();
+	bob.status();
+
+	
 }

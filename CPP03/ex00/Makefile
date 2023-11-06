@@ -3,7 +3,7 @@ NAME = ex00
 SRCS =	main.cpp		\
 		ClapTrap.cpp	\
 
-HEADERS = -I ClapTrap.hpp
+HEADERS = ClapTrap.hpp
 
 OBJS_DIR = ./objs/
 OBJS = $(SRCS:%.cpp=$(OBJS_DIR)%.o)
@@ -22,9 +22,9 @@ $(OBJS_DIR)%.o:%.cpp
 	@mkdir -p $(OBJS_DIR)
 	@$(CC) $(CFLAGS) -c -o $@ $<
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADERS)
 
-	@$(CC) $(CFLAGS) $(HEADERS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "${GREEN}$(NAME) COMPILED${NC}"
 
 run: re

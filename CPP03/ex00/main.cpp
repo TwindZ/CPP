@@ -6,60 +6,42 @@ using std::endl;
 int main()
 {
 	ClapTrap bob("Bob");
+	bob.status();
+	bob.takeDamage(3);
+	ClapTrap john(bob);
+	bob.status();
+	john.status();
 	ClapTrap jack("Jack");
 	
-	bob.status();
-	jack.status();
-	
-	bob.battle(jack);
 	bob.beRepaired(10);
-
 	bob.status();
-	jack.status();
 
-	jack.setAttackDamage(2);
-	jack.battle(bob);
-	bob.setAttackDamage(4);
-	bob.battle(jack);
-
+	bob.attack(jack.getName());
+	jack.takeDamage(bob.getAttackDamage());
 	bob.status();
 	jack.status();
 
 	bob.beRepaired(3);
-	jack.battle(bob);
-	jack.battle(bob);
-	bob.battle(jack);
 
 	bob.status();
 	jack.status();
 
-	bob.beRepaired(3);
-	jack.battle(bob);
-	jack.battle(bob);
-	jack.battle(bob);
-	jack.battle(bob);
-
+	while(bob.getEnergyPoints() > 0)
+		bob.attack(jack.getName());
+	
 	bob.status();
 	jack.status();
 
-	bob.beRepaired(5);
-	jack.battle(bob);
-	jack.battle(bob);
-
-	bob.status();
-	jack.status();
-
+	bob.attack(jack.getName());
+	bob.beRepaired(10);
+	jack.takeDamage(10);
+	jack.attack(bob.getName());
 	jack.beRepaired(2);
-	jack.beRepaired(2);
-	jack.battle(bob);
-
+	
 	bob.status();
 	jack.status();
 
-	bob.battle(jack);
-	jack.beRepaired(10);
-	jack.battle(bob);
 
-	bob.status();
-	jack.status();
+
+
 }

@@ -1,17 +1,19 @@
-NAME = ex01
+NAME = ex02
 
 SRCS =	main.cpp		\
 		ClapTrap.cpp	\
 		ScavTrap.cpp	\
+		FragTrap.cpp	\
 
-HEADERS = 	ScavTrap.hpp	\
+HEADERS = 	ScavTrap.hpp 	\
 			ClapTrap.hpp	\
+			FragTrap.hpp	\
 
 
 OBJS_DIR = ./objs/
 OBJS = $(SRCS:%.cpp=$(OBJS_DIR)%.o)
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98  #-Wshadow -Wno-shadow
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 CC = c++
 

@@ -38,5 +38,7 @@ int main(int argc, char **argv)
 		ofs << buffer;
 		ofs << endl;
 	}
+	ofs.close();
+	ifs.close();
 	return 0 ;
 }
