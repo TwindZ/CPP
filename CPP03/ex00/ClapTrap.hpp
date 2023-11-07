@@ -16,8 +16,8 @@ class ClapTrap
 	
 	public:
 
-		ClapTrap(string const name);
-		ClapTrap(ClapTrap const& clapTrap);
+		ClapTrap(string const& name);
+		ClapTrap(ClapTrap const& claptrap);
 		ClapTrap const& operator=(ClapTrap const& clapTrap);
 		~ClapTrap();
 

@@ -5,7 +5,6 @@ using std::cout;
 using std::endl;
 using std::string;
 
-//-------------------------COPLIEN
 ScavTrap::ScavTrap()
 {
 	cout << "ScavTrap default constructor called" << endl;
@@ -36,7 +35,7 @@ ScavTrap const& ScavTrap::operator=(ScavTrap const& scavTrap)
 
 ScavTrap::~ScavTrap()
 {
-	cout << "ScavTrap destructor called" << endl;
+	cout << "ScavTrap " << _name << " destructor called" << endl;
 }
 
 bool ScavTrap::getGuardGateStatus()const
@@ -88,25 +87,4 @@ void ScavTrap::status()const
 	cout << " | Ep : " << _energyPoints;
 	cout << " | Ad : " << _attackDamage;
 	cout << " | Guard : " << _guardGate << " |" << endl << endl;
-}
-
-void ScavTrap::battle(ScavTrap & target)
-{
-	if(this == &target)
-	{
-		cout << _name << " can't attacks himself !" << endl;
-		return ;
-	}
-	if(_hitPoints > 0 && _energyPoints > 0)
-	{
-		this->attack(target.getName());
-		target.takeDamage(this->_attackDamage);
-	}
-	else
-	{
-		if(_hitPoints == 0)
-			cout << _name << " can't attack because he's dead !" << endl;
-		else
-			cout << _name << " can't attack because he has no energy !" << endl;
-	}
 }

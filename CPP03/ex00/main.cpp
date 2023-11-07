@@ -11,6 +11,12 @@ int main()
 	ClapTrap john(bob);
 	bob.status();
 	john.status();
+	bob.takeDamage(5);
+	john = bob;
+
+	bob.status();
+	john.status();
+	
 	ClapTrap jack("Jack");
 	
 	bob.beRepaired(10);
@@ -40,8 +46,4 @@ int main()
 	
 	bob.status();
 	jack.status();
-
-
-
-
 }

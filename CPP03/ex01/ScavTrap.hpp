@@ -23,6 +23,5 @@ class ScavTrap : public ClapTrap
 		void attack(string const& target);
 		void guardGate( void );
 		void status( void )const;
-		void battle(ScavTrap & target);
 };
 #endif

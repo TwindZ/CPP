@@ -5,21 +5,20 @@ using std::cout;
 using std::endl;
 using std::string;
 
-//-------------------------COPLIEN
 ClapTrap::ClapTrap()
 {
-	cout << "Default ClapTrap Constructor called" << endl;
+	cout << "Default Constructor called" << endl;
 }
 
 ClapTrap::ClapTrap(string const& name):_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	cout << "Default ClapTrap Constructor called" << endl;
+	cout << "ClapTrap "<< name << " base constructor call !" << endl;
 }
 
 ClapTrap::ClapTrap(string const& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage):
 _name(name), _hitPoints(hitPoints), _energyPoints(energyPoints), _attackDamage(attackDamage)
 {
-	cout << "ClapTrap "<< name << " constructor called !" << endl;
+	cout << "ClapTrap "<< name << " constructor called with costum initialisation !" << endl;
 }
 		
 ClapTrap::ClapTrap(ClapTrap const& clapTrap)
@@ -44,7 +43,6 @@ ClapTrap::~ClapTrap()
 	cout << "ClapTrap " << _name  << " destructor called"<< endl;
 }
 
-//-------------------------GETTERS & SETTER
 string const ClapTrap::getName()const
 {
 	return _name;
@@ -65,13 +63,6 @@ unsigned int ClapTrap::getAttackDamage()const
 	return _attackDamage;
 }
 
-void ClapTrap::setAttackDamage(unsigned int amount)
-{
-	cout << _name << " equip a weapon with " << amount << " attack damage !" << endl;
-	_attackDamage = amount;
-}
-
-//-------------------------MEMBER FUNCTIONS
 void ClapTrap::attack(string const& target)
 {
 	if(_hitPoints > 0 && _energyPoints > 0)
@@ -109,24 +100,14 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if(_hitPoints > 0)
 	{
 		cout << _name << " trying to repair " << amount << " hit points..."<< endl;
-		if(_hitPoints < 10 && _hitPoints > 0 && _energyPoints > 0)
+		if( _energyPoints > 0)
 		{
 			_hitPoints += amount;
-			if(_hitPoints > 10)
-			{
-				amount -= _hitPoints - 10;
-				_hitPoints = 10;
-			}	
 			_energyPoints--;
 			cout << _name << " repaired " << amount << " hit points !"<< endl;
 		}
 		else
-		{
-			if(_hitPoints == 10)
-				cout << _name << " can't repair because he's already full of hit points !" << endl;
-			else
-				cout << _name << " can't repair because he has no energy !" << endl;
-		}
+			cout << _name << " can't repair because he has no energy !" << endl;
 	}
 	else
 		cout << _name << " can't repair because he's dead !" << endl;
@@ -139,25 +120,4 @@ void ClapTrap::status()const
 	cout << " | Hp : " << _hitPoints;
 	cout << " | Ep : " << _energyPoints;
 	cout << " | Ad : " << _attackDamage << " |" << endl << endl;
-}
-
-void ClapTrap::battle(ClapTrap & target)
-{
-	if(this == &target)
-	{
-		cout << _name << " can't attacks himself !" << endl;
-		return ;
-	}
-	if(_hitPoints > 0 && _energyPoints > 0)
-	{
-		this->attack(target.getName());
-		target.takeDamage(this->_attackDamage);
-	}
-	else
-	{
-		if(_hitPoints == 0)
-			cout << _name << " can't attack because he's dead !" << endl;
-		else
-			cout << _name << " can't attack because he has no energy !" << endl;
-	}
 }

@@ -10,9 +10,9 @@ ClapTrap::ClapTrap()
 	cout << "Default Constructor called" << endl;
 }
 
-ClapTrap::ClapTrap(string const name):_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap(string const& name):_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	cout << "ClapTrap "<< name << " spawned !" << endl;
+	cout << "ClapTrap "<< name << " base constructor call !" << endl;
 }
 		
 ClapTrap::ClapTrap(ClapTrap const& clapTrap)
@@ -34,7 +34,7 @@ ClapTrap const& ClapTrap::operator=(ClapTrap const& clapTrap)
 
 ClapTrap::~ClapTrap()
 {
-	cout << "ClapTrap " << _name  << " despawned !"<< endl;
+	cout << "ClapTrap " << _name  << " destructor called"<< endl;
 }
 
 string const ClapTrap::getName()const
@@ -94,25 +94,14 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if(_hitPoints > 0)
 	{
 		cout << _name << " trying to repair " << amount << " hit points..."<< endl;
-		if(_hitPoints < 10 && _energyPoints > 0)
+		if(_energyPoints > 0)
 		{
 			_hitPoints += amount;
-			if(_hitPoints > 10)
-			{
-				amount -= _hitPoints - 10;
-				_hitPoints = 10;
-			}	
 			_energyPoints--;
 			cout << _name << " repaired " << amount << " hit points !"<< endl;
 		}
 		else
-		{
-			if(_energyPoints == 0)
 				cout << _name << " can't repair because he has no energy !" << endl;
-			else
-				cout << _name << " can't repair because he's already full of hit points !" << endl;
-				
-		}
 	}
 	else
 		cout << _name << " can't repair because he's dead !" << endl;
