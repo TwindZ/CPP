@@ -5,12 +5,12 @@ using std::cout;
 using std::endl;
 using std::string;
 
-Cat::Cat(): Animal("Cat")
+Cat::Cat()
 {
-	cout << "Cat default constructor called" << endl;
+	_type = "Cat";
+	cout << "Cat constructor called" << endl;
 }
 
-		
 Cat::Cat(Cat const& cat)
 {
 	*this = cat;
@@ -21,6 +21,7 @@ Cat & Cat::operator=(Cat const& cat)
 {
 	if(this != &cat)
 	{
+		Animal::operator=(cat);
 		cout << "Cat assignement called" << endl;
 	}
 	return *this;
@@ -35,8 +36,3 @@ void Cat::makeSound()const
 {
 	cout << "Meeeow Rrrrr Rrrr Rrr" << endl;
 }
-
-
-
-
-

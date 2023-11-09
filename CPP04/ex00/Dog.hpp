@@ -8,10 +8,7 @@ using std::string;
 
 class Dog: public Animal
 {
-	private:
-
-		string type;
-
+	
 	public:
 
 		Dog();

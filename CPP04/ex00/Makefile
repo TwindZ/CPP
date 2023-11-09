@@ -2,11 +2,15 @@ NAME = ex00
 
 SRCS =	main.cpp		\
 		Animal.cpp		\
+		WrongAnimal.cpp	\
 		Cat.cpp			\
+		WrongCat.cpp	\
 		Dog.cpp			\
 
 HEADERS = 	Animal.hpp 		\
+			WrongAnimal.hpp	\
 			Cat.hpp			\
+			WrongCat.hpp	\
 			Dog.hpp			\
 
 OBJS_DIR = ./objs/

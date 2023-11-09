@@ -5,14 +5,8 @@ using std::cout;
 using std::endl;
 using std::string;
 
-Animal::Animal()
+Animal::Animal(): _type("")
 {
-	cout << "Animal default constructor called" << endl;
-}
-
-Animal::Animal(string const& type)
-{
-	_type = type;
 	cout << "Animal constructor called" << endl;
 }
 		
@@ -46,7 +40,3 @@ void Animal::makeSound()const
 {
 	cout << "Animal Class has no default sound..." << endl;
 }
-
-
-
-

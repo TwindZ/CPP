@@ -5,9 +5,10 @@ using std::cout;
 using std::endl;
 using std::string;
 
-Dog::Dog(): Animal("Dog")
+Dog::Dog()
 {
-	cout << "Dog default constructor called" << endl;
+	_type = "Dog";
+	cout << "Dog constructor called" << endl;
 }
 		
 Dog::Dog(Dog const& dog)
@@ -20,6 +21,7 @@ Dog & Dog::operator=(Dog const& dog)
 {
 	if(this != &dog)
 	{
+		Animal::operator=(dog);
 		cout << "Dog assignement called" << endl;
 	}
 	return *this;

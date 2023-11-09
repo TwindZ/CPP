@@ -14,7 +14,6 @@ class Animal
 	public:
 
 		Animal();
-		Animal(string const& name);
 		Animal(Animal const& animal);
 		Animal & operator=(Animal const& animal);
 		virtual ~Animal();
