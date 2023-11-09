@@ -16,7 +16,7 @@ class ScavTrap : public ClapTrap
 
 		ScavTrap(string const& name);
 		ScavTrap(ScavTrap const& scavTrap);
-		ScavTrap const& operator=(ScavTrap const& scavTrap);
+		ScavTrap & operator=(ScavTrap const& scavTrap);
 		~ScavTrap();
 
 		bool getGuardGateStatus( void )const;

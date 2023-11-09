@@ -18,7 +18,7 @@ class ClapTrap
 
 		ClapTrap(string const& name);
 		ClapTrap(ClapTrap const& claptrap);
-		ClapTrap const& operator=(ClapTrap const& clapTrap);
+		ClapTrap & operator=(ClapTrap const& clapTrap);
 		~ClapTrap();
 
 		string const getName()const;

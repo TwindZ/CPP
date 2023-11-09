@@ -15,7 +15,7 @@ class FragTrap : public ClapTrap
 
 		FragTrap(string const& name);
 		FragTrap(FragTrap const& fragTrap);
-		FragTrap const& operator=(FragTrap const& fragTrap);
+		FragTrap & operator=(FragTrap const& fragTrap);
 		~FragTrap();
 
 		void highFivesGuys(void);

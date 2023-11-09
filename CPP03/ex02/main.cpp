@@ -13,13 +13,12 @@ int main()
 	jay.status();
 	paul.highFivesGuys();
 	jay.guardGate();
-	//paul.guardGate();
-	//jay.highFivesGuys();
+	// paul.guardGate();
+	// jay.highFivesGuys();
 	paul.attack(jay.getName());
 	jay.takeDamage(paul.getAttackDamage());
 	jay.attack(paul.getName());
 	paul.takeDamage(jay.getAttackDamage());
 	paul.status();
 	jay.status();
-
 }

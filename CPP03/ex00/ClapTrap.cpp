@@ -5,7 +5,7 @@ using std::cout;
 using std::endl;
 using std::string;
 
-ClapTrap::ClapTrap()
+ClapTrap::ClapTrap():_name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
 	cout << "Default Constructor called" << endl;
 }
@@ -20,7 +20,7 @@ ClapTrap::ClapTrap(ClapTrap const& clapTrap)
 	*this = clapTrap;
 }
 
-ClapTrap const& ClapTrap::operator=(ClapTrap const& clapTrap)
+ClapTrap & ClapTrap::operator=(ClapTrap const& clapTrap)
 {
 	if(this != &clapTrap)
 	{

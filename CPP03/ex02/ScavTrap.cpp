@@ -22,7 +22,7 @@ ScavTrap::ScavTrap(ScavTrap const& scavTrap): ClapTrap(scavTrap)
 	cout << "ScavTrap copy constructor called" << endl;
 }
 
-ScavTrap const& ScavTrap::operator=(ScavTrap const& scavTrap)
+ScavTrap & ScavTrap::operator=(ScavTrap const& scavTrap)
 {
 	if(this != &scavTrap)
 	{

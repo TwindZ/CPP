@@ -19,7 +19,7 @@ class ClapTrap
 		ClapTrap(string const& name);
 		ClapTrap(ClapTrap const& claptrap);
 		ClapTrap(string const& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage);
-		ClapTrap const& operator=(ClapTrap const& clapTrap);
+		ClapTrap & operator=(ClapTrap const& clapTrap);
 		~ClapTrap();
 
 		string const getName()const;

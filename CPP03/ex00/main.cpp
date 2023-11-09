@@ -18,14 +18,16 @@ int main()
 	john.status();
 	
 	ClapTrap jack("Jack");
-	
+	john = jack = bob;
+	cout << "ici ";
+	john.status();
+	bob.status();
 	bob.beRepaired(10);
 	bob.status();
-
+	john.status();
 	bob.attack(jack.getName());
 	jack.takeDamage(bob.getAttackDamage());
 	bob.status();
-	jack.status();
 
 	bob.beRepaired(3);
 

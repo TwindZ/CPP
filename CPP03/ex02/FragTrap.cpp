@@ -5,7 +5,6 @@ using std::cout;
 using std::endl;
 using std::string;
 
-//-------------------------COPLIEN
 FragTrap::FragTrap()
 {
 	cout << "FragTrap default constructor called" << endl;
@@ -22,7 +21,7 @@ FragTrap::FragTrap(FragTrap const& fragTrap): ClapTrap(fragTrap)
 	cout << "FragTrap copy constructor called" << endl;
 }
 
-FragTrap const& FragTrap::operator=(FragTrap const& fragTrap)
+FragTrap & FragTrap::operator=(FragTrap const& fragTrap)
 {
 	if(this != &fragTrap)
 	{
@@ -39,5 +38,8 @@ FragTrap::~FragTrap()
 
 void FragTrap::highFivesGuys(void)
 {
-	cout << "Who want an high fives guys ?" << endl;
+	if(_hitPoints == 0)
+		cout << _name << " can't high fives because he's dead !" << endl;
+	else
+		cout << "Who want an high fives guys ?" << endl;
 }
