@@ -8,15 +8,18 @@ using std::string;
 class Brain
 {
 	private:
-		string *_idea;
+		
+		string *_ideas;
 
 	public:
 		Brain();
+		Brain(string idea);
 		Brain(Brain const& Copy);
 		Brain & operator=(Brain const& Copy);
-		~Brain();
+		virtual ~Brain();
 
-		string & getIdea(int const i)const;
+		string & getIdeas(int const i)const;
+		void setIdea(int i, string idea);
 };
 
 #endif

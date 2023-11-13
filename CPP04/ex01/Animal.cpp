@@ -12,16 +12,16 @@ Animal::Animal(): _type("")
 		
 Animal::Animal(Animal const& animal)
 {
-	*this = animal;
 	cout << "Animal copy constructor called" << endl;
+	*this = animal;
 }
 
 Animal & Animal::operator=(Animal const& animal)
 {
 	if(this != &animal)
 	{
-		_type = animal._type;
 		cout << "Animal assignement called" << endl;
+		_type = animal._type;
 	}
 	return *this;
 }
@@ -39,4 +39,10 @@ string Animal::getType()const
 void Animal::makeSound()const
 {
 	cout << "Animal Class has no default sound..." << endl;
+}
+
+string Animal::getIdeas(int i)
+{
+	(void) i;
+	return string("");
 }

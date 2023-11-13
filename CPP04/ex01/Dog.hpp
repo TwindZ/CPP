@@ -3,12 +3,16 @@
 
 #include <iostream>
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 using std::string;
 
 class Dog: public Animal
 {
-	
+	private:
+
+		Brain *_brain;
+
 	public:
 
 		Dog();
@@ -17,6 +21,7 @@ class Dog: public Animal
 		~Dog();
 
 		void makeSound()const;
-
+		string getIdeas(int i);
+		Brain * getBrain();
 };
 #endif

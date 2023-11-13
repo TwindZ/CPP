@@ -3,11 +3,15 @@
 
 #include <iostream>
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 using std::string;
 
 class Cat: public Animal
 {
+	private:
+
+		Brain *_brain;
 
 	public:
 
@@ -17,6 +21,8 @@ class Cat: public Animal
 		~Cat();
 
 		void makeSound()const;
+		string getIdeas(int i);
+		Brain * getBrain();
 
 };
 #endif

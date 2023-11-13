@@ -15,20 +15,20 @@ void test(Animal const& animal)
 
 int main()
 {
-	const Animal* meta = new Animal();
+	// const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
-	meta->makeSound();
+	// meta->makeSound();
 
 	cout << endl << endl;
 
 	test(*i);
 	test(*j);
-	test(*meta);
+	// test(*meta);
 
 	cout << endl << endl;
 
@@ -37,17 +37,41 @@ int main()
 	std::cout << i2->getType() << " " << std::endl;
 	i2->makeSound();
 	meta2->makeSound();
-	
-	Brain brain;
-	cout << "idea brain idea 8 address" << &brain.getIdea(8) << endl;
-	Brain brain2(brain);
-	cout << "idea brain2 idea 8 address" << &brain2.getIdea(8) << endl;
 
-	delete meta;
+	Cat cat1;
+	cat1.getBrain()->setIdea(3, "ahhahaah");
+	Cat cat2(cat1);
+	cout << cat2.getIdeas(3) << endl << endl;
+
+	Animal *(animal[20]);
+	for(int i = 0; i < 20; i++)
+	{
+		if(i < 10)
+			animal[i] = new Cat;
+		else
+			animal[i] = new Dog;
+	}
+	
+	cout << endl << endl;
+	cout << animal[12]->getIdeas(6) << endl;
+	animal[12]->getBrain()->setIdea(6, "maybe im not a dog");
+	cout << animal[12]->getIdeas(6) << endl;
+	for(int i = 0; i < 20; i++)
+	{
+		delete animal[i];
+		animal[i] = 0;
+	}
+
+	// delete meta;
 	delete i;
 	delete j;
 	delete meta2;
 	delete i2;
+	// meta = 0;
+	// i = 0;
+	// j = 0;
+	// meta2 = 0;
+	// i2 = 0;
 
 return 0;
 }

@@ -3,41 +3,44 @@
 using std::cout;
 using std::endl;
 
-Brain::Brain():_idea(nullptr)
+Brain::Brain():_ideas(nullptr)
 {
-	_idea = new string[100];
-	for(int i = 0; i < 100; i++)
-		_idea[i] = "test" + std::to_string(i);
 	cout << "Brain constructor called" << endl;
+	_ideas = new string[100];
 }
 
-Brain::Brain(Brain const& copy): _idea(nullptr)
+Brain::Brain(Brain const& copy): _ideas(nullptr)
 {
-	*this = copy;
 	cout << "Brain copy constructor called" << endl;
+	*this = copy;
 }
 
 Brain & Brain::operator=(Brain const& copy)
 {
+	cout << "Brain assignement called" << endl;
 	if(this != &copy)
 	{
-		if(_idea != nullptr)
-			delete [] _idea;
-		_idea = new string[100];
+		if(_ideas != nullptr)
+			delete [] _ideas;
+		_ideas = new string[100];
 		for(int i = 0; i < 100; i++)
-			_idea[i] = copy._idea[i];
-		cout << "Brain assignement called" << endl;
+			_ideas[i] = copy._ideas[i];
 	}
 	return *this;
 }
 
 Brain::~Brain()
 {
-	delete [] _idea;
+	delete [] _ideas;
 	cout << "Brain destructor called" << endl;
 }
 
-string & Brain::getIdea(int const i)const
+string & Brain::getIdeas(int const i)const
 {
-	return _idea[i];
+	return _ideas[i];
+}
+
+void Brain::setIdea(int i, string idea)
+{
+	_ideas[i] = idea;
 }

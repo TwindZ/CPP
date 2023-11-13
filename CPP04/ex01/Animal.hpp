@@ -2,6 +2,7 @@
 # define ANIMAL_HPP
 
 #include <iostream>
+#include "Brain.hpp"
 
 using std::string;
 
@@ -20,6 +21,8 @@ class Animal
 		
 		string getType()const;
 		virtual void makeSound()const;
+		virtual string getIdeas(int i);
+		virtual Brain * getBrain();
 
 };
 #endif
