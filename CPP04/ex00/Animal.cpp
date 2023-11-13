@@ -12,16 +12,16 @@ Animal::Animal(): _type("")
 		
 Animal::Animal(Animal const& animal)
 {
-	*this = animal;
 	cout << "Animal copy constructor called" << endl;
+	*this = animal;
 }
 
 Animal & Animal::operator=(Animal const& animal)
 {
+	cout << "Animal assignement called" << endl;
 	if(this != &animal)
 	{
 		_type = animal._type;
-		cout << "Animal assignement called" << endl;
 	}
 	return *this;
 }
@@ -31,7 +31,7 @@ Animal::~Animal()
 	cout << "Animal destructor called" << endl;
 }
 
-string Animal::getType()const
+string const& Animal::getType()const
 {
 	return _type;
 }

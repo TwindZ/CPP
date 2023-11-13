@@ -18,7 +18,7 @@ class Animal
 		Animal & operator=(Animal const& animal);
 		virtual ~Animal();
 		
-		string getType()const;
+		string const& getType()const;
 		virtual void makeSound()const;
 
 };

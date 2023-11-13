@@ -2,12 +2,12 @@
 # define CAT_HPP
 
 #include <iostream>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
 using std::string;
 
-class Cat: public Animal
+class Cat: public AAnimal
 {
 	private:
 
@@ -21,7 +21,7 @@ class Cat: public Animal
 		~Cat();
 
 		void makeSound()const;
-		string const getIdeas(int const i)const ;
+		string getIdeas(int i);
 		Brain * getBrain();
 
 };

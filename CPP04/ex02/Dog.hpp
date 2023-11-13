@@ -2,12 +2,12 @@
 # define DOG_HPP
 
 #include <iostream>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
 using std::string;
 
-class Dog: public Animal
+class Dog: public AAnimal
 {
 	private:
 
@@ -21,7 +21,7 @@ class Dog: public Animal
 		~Dog();
 
 		void makeSound()const;
-		string const getIdeas(int const i)const;
+		string getIdeas(int i);
 		Brain * getBrain();
 };
 #endif

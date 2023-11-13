@@ -7,23 +7,22 @@ using std::string;
 
 WrongCat::WrongCat()
 {
-	cout << "WrongCat constructor called" << endl;
 	_type = "Cat";
+	cout << "WrongCat constructor called" << endl;
 }
 
-		
 WrongCat::WrongCat(WrongCat const& wrongCat)
 {
-	cout << "WrongCat copy constructor called" << endl;
 	*this = wrongCat;
+	cout << "WrongCat copy constructor called" << endl;
 }
 
 WrongCat & WrongCat::operator=(WrongCat const& wrongCat)
 {
-	cout << "WrongCat assignement called" << endl;
 	if(this != &wrongCat)
 	{
 		WrongAnimal::operator=(wrongCat);
+		cout << "WrongCat assignement called" << endl;
 	}
 	return *this;
 }
@@ -32,8 +31,3 @@ WrongCat::~WrongCat()
 {
 	cout << "WrongCat destructor called" << endl;
 }
-
-
-
-
-

@@ -18,7 +18,7 @@ class Brain
 		Brain & operator=(Brain const& Copy);
 		virtual ~Brain();
 
-		string const& getIdeas(int const i)const;
+		string & getIdeas(int const i)const;
 		void setIdea(int i, string idea);
 };
 

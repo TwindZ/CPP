@@ -26,8 +26,7 @@ Cat & Cat::operator=(Cat const& cat)
 	if(this != &cat)
 	{
 		Animal::operator=(cat);
-		_brain = new Brain;
-		_brain->operator=(*cat._brain);
+		_brain = new Brain(*cat._brain);
 	}
 	return *this;
 }
@@ -43,7 +42,7 @@ void Cat::makeSound()const
 	cout << "Meeeow Rrrrr Rrrr Rrr" << endl;
 }
 
-string Cat::getIdeas(int i)
+string const Cat::getIdeas(int const i)const
 {
 	return _brain->getIdeas(i);
 }

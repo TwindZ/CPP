@@ -18,9 +18,9 @@ Animal::Animal(Animal const& animal)
 
 Animal & Animal::operator=(Animal const& animal)
 {
+	cout << "Animal assignement called" << endl;
 	if(this != &animal)
 	{
-		cout << "Animal assignement called" << endl;
 		_type = animal._type;
 	}
 	return *this;
@@ -31,7 +31,7 @@ Animal::~Animal()
 	cout << "Animal destructor called" << endl;
 }
 
-string Animal::getType()const
+string const& Animal::getType()const
 {
 	return _type;
 }
@@ -41,8 +41,13 @@ void Animal::makeSound()const
 	cout << "Animal Class has no default sound..." << endl;
 }
 
-string Animal::getIdeas(int i)
+string const Animal::getIdeas(int const i)const
 {
 	(void) i;
 	return string("");
+}
+
+Brain * Animal::getBrain()
+{
+	return nullptr;
 }

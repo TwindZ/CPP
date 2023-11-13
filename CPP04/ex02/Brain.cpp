@@ -35,7 +35,7 @@ Brain::~Brain()
 	cout << "Brain destructor called" << endl;
 }
 
-string const& Brain::getIdeas(int const i)const
+string & Brain::getIdeas(int const i)const
 {
 	return _ideas[i];
 }

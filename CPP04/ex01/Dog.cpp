@@ -26,8 +26,7 @@ Dog & Dog::operator=(Dog const& dog)
 	if(this != &dog)
 	{
 		Animal::operator=(dog);
-		_brain = new Brain;
-		_brain->operator=(*dog._brain);
+		_brain = new Brain(*dog._brain);
 	}
 	return *this;
 }
@@ -43,7 +42,7 @@ void Dog::makeSound()const
 	cout << "Whoof Whooff" << endl;
 }
 
-string Dog::getIdeas(int i)
+string const Dog::getIdeas(int const i)const
 {
 	return _brain->getIdeas(i);
 }
