@@ -21,7 +21,7 @@ class Cat: public AAnimal
 		~Cat();
 
 		void makeSound()const;
-		string getIdeas(int i);
+		string const& getIdeas(int const i)const;
 		Brain * getBrain();
 
 };

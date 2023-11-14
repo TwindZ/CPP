@@ -18,9 +18,9 @@ AAnimal::AAnimal(AAnimal const& aanimal)
 
 AAnimal & AAnimal::operator=(AAnimal const& aanimal)
 {
+	cout << "AAnimal assignement called" << endl;
 	if(this != &aanimal)
 	{
-		cout << "AAnimal assignement called" << endl;
 		_type = aanimal._type;
 	}
 	return *this;

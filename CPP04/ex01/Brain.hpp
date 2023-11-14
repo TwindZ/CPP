@@ -19,7 +19,7 @@ class Brain
 		virtual ~Brain();
 
 		string const& getIdeas(int const i)const;
-		void setIdea(int i, string idea);
+		void setIdea(int const i, string const& idea);
 };
 
 #endif

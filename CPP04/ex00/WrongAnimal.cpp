@@ -12,8 +12,8 @@ WrongAnimal::WrongAnimal(): _type("")
 		
 WrongAnimal::WrongAnimal(WrongAnimal const& wrongAnimal)
 {
-	*this = wrongAnimal;
 	cout << "WrongAnimal copy constructor called" << endl;
+	*this = wrongAnimal;
 }
 
 WrongAnimal & WrongAnimal::operator=(WrongAnimal const& wrongAnimal)

@@ -40,7 +40,3 @@ void WrongAnimal::makeSound()const
 {
 	cout << "WrongAnimal Class has no default sound..." << endl;
 }
-
-
-
-

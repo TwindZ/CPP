@@ -21,7 +21,7 @@ class Dog: public AAnimal
 		~Dog();
 
 		void makeSound()const;
-		string getIdeas(int i);
+		string const& getIdeas(int const i)const;
 		Brain * getBrain();
 };
 #endif

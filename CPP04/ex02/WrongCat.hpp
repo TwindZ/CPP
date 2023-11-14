@@ -17,5 +17,4 @@ class WrongCat: public WrongAnimal
 		~WrongCat();
 
 };
-
 #endif

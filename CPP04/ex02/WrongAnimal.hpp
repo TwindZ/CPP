@@ -19,9 +19,8 @@ class WrongAnimal
 		WrongAnimal & operator=(WrongAnimal const& WrongAnimal);
 		virtual ~WrongAnimal();
 		
-		string getType()const;
+		string const& getType()const;
 		virtual void makeSound()const;
 
 };
-
 #endif

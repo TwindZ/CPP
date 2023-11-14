@@ -42,7 +42,7 @@ void Cat::makeSound()const
 	cout << "Meeeow Rrrrr Rrrr Rrr" << endl;
 }
 
-string Cat::getIdeas(int i)
+string const& Cat::getIdeas(int const i)const
 {
 	return _brain->getIdeas(i);
 }

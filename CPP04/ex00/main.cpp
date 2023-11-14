@@ -36,7 +36,7 @@ int main()
 	
 	cout << ORANGE << "------------------------------------------------" << RESET << endl;
 	cout << ORANGE << "MAKESOUND i j meta" << RESET << endl;
-	i->makeSound(); //will output the cat sound!
+	i->makeSound();
 	j->makeSound();
 	meta->makeSound();
 	

@@ -21,7 +21,7 @@ class AAnimal
 		
 		string const& getType()const;
 		virtual void makeSound()const = 0;
-		virtual string getIdeas(int i) = 0;
+		virtual string const& getIdeas(int const i)const = 0;
 		virtual Brain * getBrain() = 0;
 
 };

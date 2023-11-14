@@ -1,5 +1,5 @@
-#include <iostream>
 #include "WrongAnimal.hpp"
+#include <iostream>
 
 using std::cout;
 using std::endl;
@@ -12,16 +12,16 @@ WrongAnimal::WrongAnimal(): _type("")
 		
 WrongAnimal::WrongAnimal(WrongAnimal const& wrongAnimal)
 {
-	*this = wrongAnimal;
 	cout << "WrongAnimal copy constructor called" << endl;
+	*this = wrongAnimal;
 }
 
 WrongAnimal & WrongAnimal::operator=(WrongAnimal const& wrongAnimal)
 {
+	cout << "WrongAnimal assignement called" << endl;
 	if(this != &wrongAnimal)
 	{
 		_type = wrongAnimal._type;
-		cout << "WrongAnimal assignement called" << endl;
 	}
 	return *this;
 }
@@ -31,7 +31,7 @@ WrongAnimal::~WrongAnimal()
 	cout << "WrongAnimal destructor called" << endl;
 }
 
-string WrongAnimal::getType()const
+string const& WrongAnimal::getType()const
 {
 	return _type;
 }
@@ -40,7 +40,3 @@ void WrongAnimal::makeSound()const
 {
 	cout << "WrongAnimal Class has no default sound..." << endl;
 }
-
-
-
-

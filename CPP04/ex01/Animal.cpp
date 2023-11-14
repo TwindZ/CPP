@@ -41,6 +41,7 @@ void Animal::makeSound()const
 	cout << "Animal Class has no default sound..." << endl;
 }
 
+// besoin sans classe abstraite
 string const Animal::getIdeas(int const i)const
 {
 	(void) i;

@@ -16,10 +16,10 @@ class Brain
 		Brain(string idea);
 		Brain(Brain const& Copy);
 		Brain & operator=(Brain const& Copy);
-		virtual ~Brain();
+		~Brain();
 
-		string & getIdeas(int const i)const;
-		void setIdea(int i, string idea);
+		string const& getIdeas(int const i)const;
+		void setIdea(int const i, string const& idea);
 };
 
 #endif
