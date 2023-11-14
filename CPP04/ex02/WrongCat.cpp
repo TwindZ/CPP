@@ -32,8 +32,3 @@ WrongCat::~WrongCat()
 {
 	cout << "WrongCat destructor called" << endl;
 }
-
-
-
-
-

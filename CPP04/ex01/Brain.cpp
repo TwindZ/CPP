@@ -31,8 +31,8 @@ Brain & Brain::operator=(Brain const& copy)
 
 Brain::~Brain()
 {
-	cout << "Brain destructor called" << endl;
 	delete [] _ideas;
+	cout << "Brain destructor called" << endl;
 }
 
 string const& Brain::getIdeas(int const i)const
