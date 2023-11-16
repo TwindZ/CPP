@@ -2,6 +2,7 @@ NAME = ex01
 
 SRCS =	main.cpp		\
 		Bureaucrat.cpp	\
+		Form.cpp		\
 
 OBJS_DIR = ./objs/
 SRCS_DIR = ./srcs/
@@ -30,6 +31,10 @@ run: re
 
 	@echo "${GREEN}$(NAME) RUN${NC}"
 	@./$(NAME)
+
+leaks: re 
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+	rm -rf ./$(NAME).dSYM
 
 clean:
 

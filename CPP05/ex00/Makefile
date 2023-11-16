@@ -31,6 +31,10 @@ run: re
 	@echo "${GREEN}$(NAME) RUN${NC}"
 	@./$(NAME)
 
+leaks: re 
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+	rm -rf ./$(NAME).dSYM
+
 clean:
 
 	@rm -rf $(OBJS_DIR)

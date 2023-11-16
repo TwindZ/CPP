@@ -69,6 +69,20 @@ void Bureaucrat::demote()
 
 }
 
+void Bureaucrat::signForm(Form & form)
+{
+	try
+	{
+		form.beSigned(*this);
+		cout << _name << " signed " << form.getName() << endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << _name << " couldn't sign " << form.getName() << " because : " << e.what() << endl;
+	}
+	
+}
+
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return "Grade is to high !";
