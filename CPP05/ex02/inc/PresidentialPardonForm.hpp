@@ -1,12 +1,11 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
 
-#include <iostream>
+# include <iostream>
 # include <fstream>
 # include "AForm.hpp"
 
 using std::string;
-using std::ofstream;
 
 class PresidentialPardonForm : public AForm
 {
@@ -16,6 +15,7 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm();
 
 	public:
+	
 		PresidentialPardonForm(string const& name, string const& target);
 		PresidentialPardonForm(PresidentialPardonForm const& Copy);
 		PresidentialPardonForm & operator=(PresidentialPardonForm const& Copy);

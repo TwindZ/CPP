@@ -5,6 +5,7 @@ SRCS =	main.cpp					\
 		AForm.cpp					\
 		ShrubberyCreationForm.cpp	\
 		PresidentialPardonForm.cpp	\
+		RobotomyRequestForm.cpp		\
 
 OBJS_DIR = ./objs/
 SRCS_DIR = ./srcs/

@@ -3,7 +3,7 @@
 using std::cout;
 using std::endl;
 
-PresidentialPardonForm::PresidentialPardonForm(): AForm("", 150, 150), _target("")
+PresidentialPardonForm::PresidentialPardonForm(): AForm("", 1, 1), _target("")
 {
 	cout << "PresidentialPardonForm constructor call" << endl;
 }

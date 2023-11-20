@@ -4,7 +4,7 @@ using std::cout;
 using std::endl;
 using std::ofstream;
 
-ShrubberyCreationForm::ShrubberyCreationForm(): AForm("", 150, 150), _target("")
+ShrubberyCreationForm::ShrubberyCreationForm(): AForm("", 1, 1), _target("")
 {
 	cout << "ShrubberyCreationForm constructor call" << endl;
 }

@@ -3,6 +3,7 @@
 #include "../inc/AForm.hpp"
 #include "../inc/ShrubberyCreationForm.hpp"
 #include "../inc/PresidentialPardonForm.hpp"
+#include "../inc/RobotomyRequestForm.hpp"
 
 #define ORANGE "\033[38;5;208m"
 #define GREEN "\033[38;5;46m"
@@ -17,7 +18,10 @@ int main()
 	Bureaucrat *bureaucrat;
 	ShrubberyCreationForm *xMas;
 	ShrubberyCreationForm *xMasCopy;
+	RobotomyRequestForm *robotomy;
 	PresidentialPardonForm *pardon;
+
+
 	
 	//###############################################################################################
 	//							BASE TEST
@@ -44,6 +48,14 @@ int main()
 	cout << CYAN << "-------------------------------------------------" << RESET << endl;
 	cout << CYAN << "xMascopy info" << RESET << endl;
 	cout << *xMasCopy << endl;
+
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "create new RobotomyRequestForm named robotomy with target Killer " << RESET << endl;
+	robotomy = new RobotomyRequestForm("robotomy", "Killer");
+	
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "robotomy info" << RESET << endl;
+	cout << *robotomy << endl;
 
 	cout << CYAN << "-------------------------------------------------" << RESET << endl;
 	cout << CYAN << "create new PresidentialPardonForm named pardon with target John " << RESET << endl;
