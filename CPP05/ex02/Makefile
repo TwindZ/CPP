@@ -1,8 +1,9 @@
-NAME = ex01
+NAME = ex02
 
-SRCS =	main.cpp		\
-		Bureaucrat.cpp	\
-		Form.cpp		\
+SRCS =	main.cpp					\
+		Bureaucrat.cpp				\
+		AForm.cpp					\
+		ShrubberyCreationForm.cpp	\
 
 OBJS_DIR = ./objs/
 SRCS_DIR = ./srcs/

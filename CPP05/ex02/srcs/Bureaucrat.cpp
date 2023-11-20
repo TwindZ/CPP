@@ -69,16 +69,16 @@ void Bureaucrat::demote()
 
 }
 
-void Bureaucrat::signForm(Form & form)
+void Bureaucrat::signForm(AForm & aform)
 {
 	try
 	{
-		form.beSigned(*this);
-		cout << _name << " signed " << form.getName() << endl;
+		aform.beSigned(*this);
+		cout << _name << " signed " << aform.getName() << endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << _name << " couldn't sign " << form.getName() << " because : " << e.what() << endl;
+		std::cerr << _name << " couldn't sign " << aform.getName() << " because : " << e.what() << endl;
 	}
 	
 }

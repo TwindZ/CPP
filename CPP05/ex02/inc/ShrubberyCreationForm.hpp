@@ -1,10 +1,12 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
-#include <iostream>
-#include "AForm.hpp"
+# include <iostream>
+# include <fstream>
+# include "AForm.hpp"
 
 using std::string;
+using std::ofstream;
 
 class ShrubberyCreationForm : public AForm
 {
@@ -18,6 +20,10 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm(ShrubberyCreationForm const& Copy);
 		ShrubberyCreationForm & operator=(ShrubberyCreationForm const& Copy);
 		~ShrubberyCreationForm();
+
+		string const& getTarget()const;
+		virtual void beSigned(Bureaucrat & bureaucrat);
+		ofstream & drawXMasTree(ofstream & o);
 
 };
 

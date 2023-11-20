@@ -8,7 +8,7 @@
 using std::string;
 using std::exception;
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -29,7 +29,7 @@ class Bureaucrat
 
 		void promote();
 		void demote();
-		void signForm(Form & form);
+		void signForm(AForm & aform);
 
 		class GradeTooHighException : public exception
 		{
