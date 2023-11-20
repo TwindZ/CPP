@@ -12,20 +12,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(): AForm("", 150, 150), _target("")
 ShrubberyCreationForm::ShrubberyCreationForm(string const& name, string const& target):
 AForm(name, 145, 137), _target(target)
 {
-	//va devenir fonction execute
-	ofstream ofs(target + "_shrubbery");
-
-	for(int i = 0; i < 10; i++)
-	{
-		ofs << "             *" << endl;
-		ofs << "            /.\\" << endl;
-		ofs << "           /..'\\" << endl;
-		ofs << "           /'.'\\" << endl;
-		ofs << "          /.''.'\\" << endl;
-		ofs << "          /.'.'.\\" << endl;
-		ofs << "    '\"\"\"\"/'.''.'.\\\"'\"'\"" << endl;
-		ofs << "         ^^^[_]^^^" << endl;
-	}
 	cout << "Overload ShrubberyCreationForm constructor call" << endl;
 }
 
@@ -33,7 +19,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const& copy):
 AForm(copy.getName(), copy.getGradeToSign(), copy.getGradeToExec()), _target(copy._target)
 {
 	cout << "ShrubberyCreationForm copy constructor call" << endl;
-	*this = copy;
 }
 
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const& copy)
@@ -41,7 +26,7 @@ ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm c
 	cout << "ShrubberyCreationForm assignement call" << endl;
 	if(this != &copy)
 	{
-		//operateur= ne fonctionne pas sur cette class
+		//TODO verifier operateur = ne fonctionne pas sur cette class
 	}
 	return *this;
 }
@@ -56,15 +41,41 @@ string const& ShrubberyCreationForm::getTarget()const
 	return _target;
 }
 
-void ShrubberyCreationForm::beSigned(Bureaucrat & bureaucrat)
+void ShrubberyCreationForm::execute(Bureaucrat const & executor)const
 {
-	(void) bureaucrat;
+	
+	if(executor.getGrade() > getGradeToExec())
+			throw AForm::GradeTooLowException();
+	if(getIsSign() == false)
+			throw AForm::NotSignedException();
+		ofstream ofs(_target + "_shrubbery.txt");
+	for(int i = 0; i < 10; i++)
+	{
+		ofs << endl;
+		ofs << "             *" << endl;
+		ofs << "            /.\\" << endl;
+		ofs << "           /..'\\" << endl;
+		ofs << "           /'.'\\" << endl;
+		ofs << "          /.''.'\\" << endl;
+		ofs << "          /.'.'.\\" << endl;
+		ofs << "    '\"\"\"\"/'.''.'.\\\"'\"'\"" << endl;
+		ofs << "         ^^^[_]^^^" << endl;
+		ofs << endl;
+
+	}
 }
 
-ofstream & ShrubberyCreationForm::drawXMasTree(ofstream & o)
+std::ostream & operator<<(std::ostream & o, ShrubberyCreationForm const& form)
 {
-	string buffer;
-
-	
+	//TODO trouve un moyen de call l'operator<< de la classe mere;
+	//en attendant
+	string signstatus("Not sign");
+	if(form.getIsSign())
+		signstatus = "Signed";
+	o << "Form name : " << form.getName() << endl;
+	o << "Target : " << form.getTarget() << endl;
+	o << "Sign status : " << signstatus << endl;
+	o << "Grade to sign : " << form.getGradeToSign() << endl;
+	o << "Grade to execute : " << form.getGradeToExec();
 	return o;
 }

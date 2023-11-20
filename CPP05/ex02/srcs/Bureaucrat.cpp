@@ -16,6 +16,7 @@ Bureaucrat::Bureaucrat()
 
 Bureaucrat::Bureaucrat(string const name, unsigned int grade):_name(name), _grade(grade)
 {
+	cout << "Bureaucrat overload constructor call" << endl;
 	if(grade < 1)
 		throw GradeTooHighException();
 	else if(grade > 150)
@@ -81,6 +82,18 @@ void Bureaucrat::signForm(AForm & aform)
 		std::cerr << _name << " couldn't sign " << aform.getName() << " because : " << e.what() << endl;
 	}
 	
+}
+void Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+		form.execute(*this);
+		cout << _name << " executed " << form.getName() << endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << _name << " cannot execute the form " << form.getName() << " because : " << e.what() << '\n';
+	}
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()

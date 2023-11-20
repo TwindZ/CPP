@@ -22,9 +22,8 @@ class ShrubberyCreationForm : public AForm
 		~ShrubberyCreationForm();
 
 		string const& getTarget()const;
-		virtual void beSigned(Bureaucrat & bureaucrat);
-		ofstream & drawXMasTree(ofstream & o);
-
+		void execute(Bureaucrat const & executor)const;
 };
+std::ostream & operator<<(std::ostream & o, ShrubberyCreationForm const& form);
 
 #endif

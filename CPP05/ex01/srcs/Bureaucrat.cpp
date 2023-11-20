@@ -16,6 +16,7 @@ Bureaucrat::Bureaucrat()
 
 Bureaucrat::Bureaucrat(string const name, unsigned int grade):_name(name), _grade(grade)
 {
+	cout << "Bureaucrat overload constructor call" << endl;
 	if(grade < 1)
 		throw GradeTooHighException();
 	else if(grade > 150)

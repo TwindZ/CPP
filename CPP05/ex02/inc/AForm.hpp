@@ -22,17 +22,18 @@ class AForm
 		AForm & operator=(AForm const& Copy); //bloquer car sinon on peut transferer la signature d'un form low level vers une high level
 
 	public:
+	
 		AForm(string const name, unsigned int gradeToSign, unsigned int gradeToExec);
 		AForm(AForm const& Copy);
-		~AForm();
+		virtual ~AForm();
 
 		string const& getName()const;
 		bool getIsSign()const;
 		unsigned int getGradeToExec()const;
 		unsigned int getGradeToSign()const;
 
-		virtual void beSigned(Bureaucrat & bureaucrat) = 0;
-
+		void beSigned(Bureaucrat & bureaucrat);
+		virtual void execute(Bureaucrat const & executor)const = 0;
 
 	class GradeTooHighException : public exception
 	{
@@ -40,12 +41,20 @@ class AForm
 			const char* what() const throw();
 
 	};
+	
 	class GradeTooLowException : public exception
 	{
 		public:
 			const char* what() const throw();
 	};
+	
 	class AlreadySignedException : public exception
+	{
+		public:
+			const char* what() const throw();
+	};
+	
+	class NotSignedException : public exception
 	{
 		public:
 			const char* what() const throw();

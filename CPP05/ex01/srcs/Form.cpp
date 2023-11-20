@@ -86,8 +86,11 @@ const char* Form::AlreadySignedException::what() const throw()
 
 std::ostream & operator<<(std::ostream & o, Form const& form)
 {
+	string signstatus("Not sign");
+	if(form.getIsSign())
+		signstatus = "Signed";
 	o << "Form name : " << form.getName() << endl;
-	o << "Sign status : " << form.getIsSign() << endl;
+	o << "Sign status : " << signstatus << endl;
 	o << "Grade to sign : " << form.getGradeToSign() << endl;
 	o << "Grade to execute : " << form.getGradeToExec();
 

@@ -2,9 +2,11 @@
 #include "../inc/Bureaucrat.hpp"
 #include "../inc/AForm.hpp"
 #include "../inc/ShrubberyCreationForm.hpp"
+#include "../inc/PresidentialPardonForm.hpp"
 
 #define ORANGE "\033[38;5;208m"
 #define GREEN "\033[38;5;46m"
+#define CYAN "\033[38;5;51m"
 #define RESET "\033[0m"
 
 using std::cout;
@@ -13,165 +15,104 @@ using std::endl;
 int main()
 {
 	Bureaucrat *bureaucrat;
-	Bureaucrat *bureaucratcopy;
+	ShrubberyCreationForm *xMas;
+	ShrubberyCreationForm *xMasCopy;
+	PresidentialPardonForm *pardon;
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "bureaucrat creation grade 25" << RESET << endl;
-	bureaucrat = new Bureaucrat("Bob", 25);
+	//###############################################################################################
+	//							BASE TEST
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "create new bureaucrat Bob grade 150" << RESET << endl;
+	bureaucrat = new Bureaucrat("Bob", 150);
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
 	cout << ORANGE << "bureaucrat info" << RESET << endl;
 	cout << *bureaucrat << endl;
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "bureaucratcopy from bureaucrat" << RESET << endl;
-	bureaucratcopy = new Bureaucrat(*bureaucrat);
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "create new ShrubberyCreationForm named xMas with target Home " << RESET << endl;
+	xMas = new ShrubberyCreationForm("xMas", "Home");
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "bureaucratcopy info" << RESET << endl;
-	cout << *bureaucratcopy << endl;
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "xMas info" << RESET << endl;
+	cout << *xMas << endl;
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "operator<< overload" << RESET << endl;
-	cout << *bureaucrat << endl;
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "copy xMas to xMasCopy" << RESET << endl;
+	xMasCopy = new ShrubberyCreationForm(*xMas);
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "delete bureaucrat and bureaucratcopy" << RESET << endl;
-	delete bureaucratcopy;
-	delete bureaucrat;
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "xMascopy info" << RESET << endl;
+	cout << *xMasCopy << endl;
+
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "create new PresidentialPardonForm named pardon with target John " << RESET << endl;
+	pardon = new PresidentialPardonForm("pardon", "John");
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "bureaucrat creation grade 25" << RESET << endl;
-	bureaucrat = new Bureaucrat("Bob", 25);
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "Pardon info" << RESET << endl;
+	cout << *pardon << endl;
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
+	//###############################################################################################
+	//							TEST ShrubberyCreationForm xMas
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Bob try to execute xMas" << RESET << endl;
+	bureaucrat->executeForm(*xMas);
+	
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Promoting Bob 20 grade" << RESET << endl;
+	for(int i = 0; i < 20; i++)
+		bureaucrat->promote();
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
 	cout << ORANGE << "bureaucrat info" << RESET << endl;
 	cout << *bureaucrat << endl;
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "bureaucrat creation grade 34" << RESET << endl;
-	bureaucratcopy = new Bureaucrat("John", 34);
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Bob retry to execute xMas" << RESET << endl;
+	bureaucrat->executeForm(*xMas);
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "bureaucratcopy info" << RESET << endl;
-	cout << *bureaucratcopy << endl;
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Bob try to sign" << RESET << endl;
+	bureaucrat->signForm(*xMas);
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "assignation from bureaucrat to bureaucratcopy" << RESET << endl;
-	*bureaucratcopy = *bureaucrat;
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "xMas info" << RESET << endl;
+	cout << *xMas << endl;
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "bureaucratcopy info" << RESET << endl;
-	cout << *bureaucratcopy << endl;
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Bob retry to execute xMas" << RESET << endl;
+	bureaucrat->executeForm(*xMas);
 	
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "delete bureaucrat and bureaucratcopy" << RESET << endl;
-	delete bureaucratcopy;
-	delete bureaucrat;
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "File Home_shrubbery is created by xMas" << RESET << endl;
 
-//----------/////////-------------//////////------------///////////------------///////
-	
-	try
-	{
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "bureaucrat creation grade 151" << RESET << endl;
-		bureaucrat = new Bureaucrat("Bob", 151);
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "bureaucrat info" << RESET << endl;
-		cout << bureaucrat->getGrade() << endl;
-		cout << bureaucrat->getName() << endl;
-
-	}
-	catch(std::exception const& e)
-	{
-		cout << e.what() << endl;
-	}
-
-	try
-	{
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "bureaucrat creation grade 0" << RESET << endl;
-		bureaucrat = new Bureaucrat("Bob", 0);
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "bureaucrat info" << RESET << endl;
-		cout << bureaucrat->getGrade() << endl;
-		cout << bureaucrat->getName() << endl;
-
-	}
-	catch(std::exception const& e)
-	{
-		cout << e.what() << endl;
-	}
-	
-//---------------////////////////---------------////////////////------------------//////////
-
-	try
-	{
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "bureaucrat creation grade 1" << RESET << endl;
-		bureaucrat = new Bureaucrat("Bob", 1);
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "bureaucrat info" << RESET << endl;
-		cout << bureaucrat->getGrade() << endl;
-		cout << bureaucrat->getName() << endl;
-
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "Demote" << RESET << endl;
-		bureaucrat->demote();
-		cout << bureaucrat->getGrade() << endl;
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "Promote" << RESET << endl;
+	//###############################################################################################
+	//							TEST PresidentialPardonForm Pardon
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "Pardon info" << RESET << endl;
+	cout << *pardon << endl;
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Promoting Bob 125 grade" << RESET << endl;
+	for(int i = 0; i < 125; i++)
 		bureaucrat->promote();
-		cout << bureaucrat->getGrade() << endl;
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "Promote" << RESET << endl;
-		bureaucrat->promote();
-		cout << bureaucrat->getGrade() << endl;
-	}
-	catch(std::exception const& e)
-	{
-		cout << e.what() << endl;
-	}
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "delete bureaucrat" << RESET << endl;
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "bureaucrat info" << RESET << endl;
+	cout << *bureaucrat << endl;
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Bob retry to execute pardon" << RESET << endl;
+	bureaucrat->signForm(*pardon);
+	bureaucrat->executeForm(*pardon);
+
+	//###############################################################################################
+	//							TEST 
+
+	//###############################################################################################
+	//							DELETING
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "deleting everybody" << RESET << endl;
 	delete bureaucrat;
-
-	try
-	{
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "bureaucrat creation grade 150" << RESET << endl;
-		bureaucrat = new Bureaucrat("John", 150);
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "bureaucrat info" << RESET << endl;
-		cout << bureaucrat->getGrade() << endl;
-		cout << bureaucrat->getName() << endl;
-
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "Promote" << RESET << endl;
-		bureaucrat->promote();
-		cout << bureaucrat->getGrade() << endl;
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "Demote" << RESET << endl;
-		bureaucrat->demote();
-		cout << bureaucrat->getGrade() << endl;
-		cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-		cout << ORANGE << "Demote" << RESET << endl;
-		bureaucrat->demote();
-		cout << bureaucrat->getGrade() << endl;
-	}
-	catch(std::exception const& e)
-	{
-		cout << e.what() << endl;
-	}
-	cout << ORANGE << "-----------------------------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "delete bureaucrat" << RESET << endl;
-	delete bureaucrat;
-
-//----------------/////////////----------------//////////////----------------/////////////
-
-	ShrubberyCreationForm *Xmas;
-
-	Xmas = new ShrubberyCreationForm("XMas", "test");
+	delete xMas;
+	delete xMasCopy;
 
 return 0;
 }
