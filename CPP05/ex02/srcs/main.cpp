@@ -32,8 +32,8 @@ int main()
 	cout << *bureaucrat << endl;
 	
 	cout << CYAN << "-------------------------------------------------" << RESET << endl;
-	cout << CYAN << "create new ShrubberyCreationForm named xMas with target Home " << RESET << endl;
-	xMas = new ShrubberyCreationForm("xMas", "Home");
+	cout << CYAN << "create new ShrubberyCreationForm with target Home " << RESET << endl;
+	xMas = new ShrubberyCreationForm("Home");
 	
 	cout << CYAN << "-------------------------------------------------" << RESET << endl;
 	cout << CYAN << "xMas info" << RESET << endl;
@@ -48,16 +48,16 @@ int main()
 	cout << *xMasCopy << endl;
 
 	cout << CYAN << "-------------------------------------------------" << RESET << endl;
-	cout << CYAN << "create new RobotomyRequestForm named robotomy with target Killer " << RESET << endl;
-	robotomy = new RobotomyRequestForm("robotomy", "Killer");
+	cout << CYAN << "create new RobotomyRequestForm with target Killer " << RESET << endl;
+	robotomy = new RobotomyRequestForm("Killer");
 	
 	cout << CYAN << "-------------------------------------------------" << RESET << endl;
 	cout << CYAN << "robotomy info" << RESET << endl;
 	cout << *robotomy << endl;
 
 	cout << CYAN << "-------------------------------------------------" << RESET << endl;
-	cout << CYAN << "create new PresidentialPardonForm named pardon with target John " << RESET << endl;
-	pardon = new PresidentialPardonForm("pardon", "John");
+	cout << CYAN << "create new PresidentialPardonForm with target John " << RESET << endl;
+	pardon = new PresidentialPardonForm("John");
 	
 	cout << CYAN << "-------------------------------------------------" << RESET << endl;
 	cout << CYAN << "Pardon info" << RESET << endl;
@@ -128,8 +128,8 @@ int main()
 	cout << ORANGE << "bureaucrat info" << RESET << endl;
 	cout << *bureaucrat << endl;
 	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "Bob sign robotomy" << RESET << endl;
-	bureaucrat->signForm(*robotomy);
+	cout << ORANGE << "Bob sign pardon" << RESET << endl;
+	bureaucrat->signForm(*pardon);
 	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
 	cout << ORANGE << "Bob try to execute pardon" << RESET << endl;
 	bureaucrat->executeForm(*pardon);

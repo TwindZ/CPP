@@ -23,7 +23,7 @@ class PresidentialPardonForm : public AForm
 
 		string const& getTarget()const;
 		void execute(Bureaucrat const & executor)const;
+		void print()const;
 };
-std::ostream & operator<<(std::ostream & o, PresidentialPardonForm const& form);
 
 #endif

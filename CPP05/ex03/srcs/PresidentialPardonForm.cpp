@@ -37,6 +37,18 @@ string const& PresidentialPardonForm::getTarget()const
 	return _target;
 }
 
+void PresidentialPardonForm::print()const
+{
+	string signstatus("Not sign");
+	if(getIsSign())
+		signstatus = "Signed";
+	cout << "Form name : " << getName() << endl;
+	cout << "Target : " << getTarget() << endl;
+	cout << "Sign status : " << signstatus << endl;
+	cout << "Grade to sign : " << getGradeToSign() << endl;
+	cout << "Grade to execute : " << getGradeToExec()<< endl;
+}
+
 void PresidentialPardonForm::execute(Bureaucrat const & executor)const
 {
 	
@@ -45,17 +57,4 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor)const
 	if(getIsSign() == false)
 			throw AForm::NotSignedException();
 	cout << _target << " a été pardonnée par Zaphod Beeblebrox." << endl;
-}
-
-std::ostream & operator<<(std::ostream & o, PresidentialPardonForm const& form)
-{
-	string signstatus("Not sign");
-	if(form.getIsSign())
-		signstatus = "Signed";
-	o << "Form name : " << form.getName() << endl;
-	o << "Target : " << form.getTarget() << endl;
-	o << "Sign status : " << signstatus << endl;
-	o << "Grade to sign : " << form.getGradeToSign() << endl;
-	o << "Grade to execute : " << form.getGradeToExec();
-	return o;
 }

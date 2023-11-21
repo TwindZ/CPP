@@ -62,15 +62,14 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor)const
 	ofs.close();
 }
 
-std::ostream & operator<<(std::ostream & o, ShrubberyCreationForm const& form)
+void ShrubberyCreationForm::print()const
 {
 	string signstatus("Not sign");
-	if(form.getIsSign())
+	if(getIsSign())
 		signstatus = "Signed";
-	o << "Form name : " << form.getName() << endl;
-	o << "Target : " << form.getTarget() << endl;
-	o << "Sign status : " << signstatus << endl;
-	o << "Grade to sign : " << form.getGradeToSign() << endl;
-	o << "Grade to execute : " << form.getGradeToExec();
-	return o;
+	cout << "Form name : " << getName() << endl;
+	cout << "Target : " << getTarget() << endl;
+	cout << "Sign status : " << signstatus << endl;
+	cout << "Grade to sign : " << getGradeToSign() << endl;
+	cout << "Grade to execute : " << getGradeToExec()<< endl;
 }

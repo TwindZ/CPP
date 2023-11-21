@@ -21,7 +21,7 @@ _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExec(gradeToEx
 		throw GradeTooLowException();
 }
 
-Form::Form(Form const& copy):_name(copy._name), _isSigned(copy._isSigned),
+Form::Form(Form const& copy):_name(copy._name), _isSigned(false),
 _gradeToSign(copy._gradeToSign), _gradeToExec(copy._gradeToExec)
 {
 	cout << "Form copy constructor call" << endl;
@@ -30,10 +30,6 @@ _gradeToSign(copy._gradeToSign), _gradeToExec(copy._gradeToExec)
 Form & Form::operator=(Form const& copy)
 {
 	cout << "Form assignement call" << endl;
-	if(this != &copy)
-	{
-		_isSigned = copy._isSigned;
-	}
 	return *this;
 }
 

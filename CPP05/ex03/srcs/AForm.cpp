@@ -66,6 +66,14 @@ void AForm::beSigned(Bureaucrat & bureaucrat)
 	_isSigned = true;
 }
 
+void AForm::print()const
+{
+	cout << "Form name : " << getName() << endl;
+	cout << "Sign status : " << getIsSign() << endl;
+	cout << "Grade to sign : " << getGradeToSign() << endl;
+	cout << "Grade to execute : " << getGradeToExec() << endl;
+}
+
 const char* AForm::GradeTooHighException::what() const throw()
 {
 	return "Grade is to high !";
