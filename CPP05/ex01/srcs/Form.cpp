@@ -29,6 +29,7 @@ _gradeToSign(copy._gradeToSign), _gradeToExec(copy._gradeToExec)
 
 Form & Form::operator=(Form const& copy)
 {
+	(void) copy;
 	cout << "Form assignement call" << endl;
 	return *this;
 }
