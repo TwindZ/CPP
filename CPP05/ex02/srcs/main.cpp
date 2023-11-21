@@ -20,8 +20,6 @@ int main()
 	ShrubberyCreationForm *xMasCopy;
 	RobotomyRequestForm *robotomy;
 	PresidentialPardonForm *pardon;
-
-
 	
 	//###############################################################################################
 	//							BASE TEST
@@ -72,7 +70,7 @@ int main()
 	bureaucrat->executeForm(*xMas);
 	
 	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "Promoting Bob 20 grade" << RESET << endl;
+	cout << ORANGE << "Promoting Bob 20 grades" << RESET << endl;
 	for(int i = 0; i < 20; i++)
 		bureaucrat->promote();
 	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
@@ -99,24 +97,42 @@ int main()
 	cout << CYAN << "File Home_shrubbery is created by xMas" << RESET << endl;
 
 	//###############################################################################################
-	//							TEST PresidentialPardonForm Pardon
+	//							TEST RobotomyRequestForm robotomy
 	cout << CYAN << "-------------------------------------------------" << RESET << endl;
-	cout << CYAN << "Pardon info" << RESET << endl;
-	cout << *pardon << endl;
+	cout << CYAN << "robotomy info" << RESET << endl;
+	cout << *robotomy << endl;
 	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "Promoting Bob 125 grade" << RESET << endl;
-	for(int i = 0; i < 125; i++)
+	cout << ORANGE << "Promoting Bob 90 grades" << RESET << endl;
+	for(int i = 0; i < 90; i++)
 		bureaucrat->promote();
 	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
 	cout << ORANGE << "bureaucrat info" << RESET << endl;
 	cout << *bureaucrat << endl;
 	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
-	cout << ORANGE << "Bob retry to execute pardon" << RESET << endl;
-	bureaucrat->signForm(*pardon);
-	bureaucrat->executeForm(*pardon);
+	cout << ORANGE << "Bob sign robotomy" << RESET << endl;
+	bureaucrat->signForm(*robotomy);
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Bob try to execute robotomy" << RESET << endl;
+	bureaucrat->executeForm(*robotomy);
 
 	//###############################################################################################
-	//							TEST 
+	//							TEST PresidentialPardonForm Pardon
+	cout << CYAN << "-------------------------------------------------" << RESET << endl;
+	cout << CYAN << "Pardon info" << RESET << endl;
+	cout << *pardon << endl;
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Promoting Bob 35 grades" << RESET << endl;
+	for(int i = 0; i < 35; i++)
+		bureaucrat->promote();
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "bureaucrat info" << RESET << endl;
+	cout << *bureaucrat << endl;
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Bob sign robotomy" << RESET << endl;
+	bureaucrat->signForm(*robotomy);
+	cout << ORANGE << "-------------------------------------------------" << RESET << endl;
+	cout << ORANGE << "Bob try to execute pardon" << RESET << endl;
+	bureaucrat->executeForm(*pardon);
 
 	//###############################################################################################
 	//							DELETING
@@ -125,6 +141,13 @@ int main()
 	delete bureaucrat;
 	delete xMas;
 	delete xMasCopy;
+	delete robotomy;
+	delete pardon;
+	bureaucrat = 0;
+	xMas = 0;
+	xMasCopy = 0;
+	robotomy = 0;
+	pardon = 0;
 
 return 0;
 }

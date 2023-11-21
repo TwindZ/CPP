@@ -47,9 +47,10 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor)const
 			throw AForm::GradeTooLowException();
 	if(getIsSign() == false)
 			throw AForm::NotSignedException();
-	int random = rand() % 2;
+	std::srand(static_cast<unsigned int>(std::time(0)));
+	int randomNumber = std::rand() % 100;
 	cout << "zzzzzzzzzzzzzzzeeeeeeeeeeeeeeeeee......."<< endl;
-	if(random)
+	if(randomNumber < 50)
 		cout << _target << " a été robotomisée"<< endl;
 	else
 		cout << _target << " n'a pas été robotomisée"<< endl;
