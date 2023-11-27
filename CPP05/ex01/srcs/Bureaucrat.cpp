@@ -31,11 +31,8 @@ Bureaucrat::Bureaucrat(Bureaucrat const& copy):_name(copy._name), _grade(copy._g
 
 Bureaucrat & Bureaucrat::operator=(Bureaucrat const& copy)
 {
+	(void) copy;
 	cout << "Bureaucrat assignement call" << endl;
-	if(this != &copy)
-	{
-		_grade = copy._grade;
-	}
 	return *this;
 }
 
