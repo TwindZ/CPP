@@ -13,10 +13,7 @@ int main()
 	int d = 7;
 	float e = 2.6;
 	float f = 5.4;
-	
 
-
-	
 	cout << "String A : " << a << endl;
 	cout << "String B : " << b << endl;
 	swap(a , b);

@@ -1,9 +1,0 @@
-phonebook
-megaphone
-*.o
-*/ex*/ex*
-.DS_store
-*/.DS_store
-.vscode
-*/.vscode
-*/objs
