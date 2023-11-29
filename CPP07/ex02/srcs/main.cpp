@@ -13,6 +13,7 @@ int main()
 
 	arrayA[8] = "salut";
 	arrayB[7] = arrayA[8] + "allo";
+	
 	try
 	{
 		cout << arrayA[8] << endl;
@@ -29,33 +30,30 @@ int main()
 	{
 		std::cerr << e.what() << '\n';
 	}
+
 	cout << arrayA.size() << endl;
+
 	for(size_t i = 0; i < arrayC.size(); i++)
-	{
 		arrayC[i] = i;
-	}
 	for(size_t i = 0; i < arrayC.size(); i++)
-	{
 		cout << arrayC[i] << endl;
-	}
+
 	Array<int> arrayD(arrayC);
+
 	for(size_t i = 0; i < arrayC.size(); i++)
-	{
-		arrayC[i] = 100;
-	}
-	for(size_t i = 0; i < arrayC.size(); i++)
-	{
 		cout << arrayC[i] << endl;
-	}
+	for(size_t i = 0; i < arrayC.size(); i++)
+		arrayC[i] = 100;
+	for(size_t i = 0; i < arrayC.size(); i++)
+		cout << arrayC[i] << endl;
 	for(size_t i = 0; i < arrayD.size(); i++)
-	{
 		cout << arrayD[i] << endl;
-	}
+
 	arrayD = arrayC;
+
 	for(size_t i = 0; i < arrayD.size(); i++)
-	{
 		cout << arrayD[i] << endl;
-	}
+
 	try
 	{
 		cout << arrayD[20] << endl;
