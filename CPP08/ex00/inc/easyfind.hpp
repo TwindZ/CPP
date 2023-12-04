@@ -3,17 +3,19 @@
 
 #include <iostream>
 #include <exception>
-#include <stdexcept>
-#include <vector>
 
 template <typename T>
-void easyfind(T data, int toFind)
+void easyfind(T cont, int toFind)
 {
-	
-
-	for(T::iterator it = test.begin(); it != test.end(); it++)
+	for(typename T::iterator it = cont.begin(); it != cont.end(); it++)
 	{
-		std::cout << test << std::endl;
-	} 
+		if(*it == toFind)
+		{
+			std::cout << "found : " << *it << std::endl;
+			return;
+		}
+	}
+	throw std::runtime_error("no occurence found");
 }
+
 #endif

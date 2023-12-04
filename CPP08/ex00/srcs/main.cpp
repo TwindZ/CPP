@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <list>
 #include "../inc/easyfind.hpp"
 
 using std::string;
@@ -8,7 +9,28 @@ using std::endl;
 
 int main()
 {
-	std::vector<int> test = {1, 2, 3, 4, 5, 6, 7, 8};
-	test.push_back(1)
-	easyfind(test, 5);
+	std::vector<int> testvector;
+	for (int i = 0; i < 50; i++)
+		testvector.push_back(i);
+	std::list<int> testlist;
+	for (int i = 0; i < 50; i++)
+		testlist.push_back(i);
+	
+	try
+	{
+		easyfind(testvector, 50);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+	try
+	{
+		easyfind(testlist, 45);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }
