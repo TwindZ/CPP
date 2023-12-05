@@ -9,15 +9,15 @@ using std::endl;
 
 int main()
 {
-	size_t spanSize = 5;
+	size_t spanSize = 10;
 	Span span1(spanSize);
 	Span span2(1);
 	
 	srand(time(0));
 	for(size_t i = 0; i < spanSize; ++i)
 	{
-		span1.addNumber(rand() % 90);
-	}
+		span1.addNumber(rand() % 500);
+	}	
 
 	cout << endl << "############################################################"<< endl;
 	cout << "SPAN1 TEST"<< endl;
@@ -57,5 +57,35 @@ int main()
 	cout << "TEST COPY CONSTRUCTOR" << endl;
 	Span span3(span2);
 	span3.print();
+
+	cout << endl << "############################################################"<< endl;
+	cout << "TEST FROM PDF" << endl;
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+	
+	cout << endl << "############################################################"<< endl;
+	cout << "TEST ADDNUMBERSARRAY" << endl;
+	int numbersArray[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	Span span4(11);
+	span4.addNumber(0);
+	span4.addNumbersArray(numbersArray, 5);
+	try
+	{
+		span4.addNumbersArray(numbersArray, 5);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+	span4.print();
+	cout << "Longest span4 : " << span4.longestSpan() << endl;
+
 	
 }

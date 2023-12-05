@@ -24,11 +24,10 @@ Span::Span(Span const& copy)
 Span & Span::operator=(Span const& copy)
 {
 	cout << "Span assignement call" << endl;
-	if(this != &copy)
-	{
-		_span = copy._span;
-		_size = copy._size;
-	}
+	if(this == &copy)
+		return *this;
+	_span = copy._span;
+	_size = copy._size;
 	return *this;
 }
 
@@ -94,9 +93,17 @@ void Span::print()
 		cout << *it << endl;
 }
 
+void Span::addNumbersArray(int * numbersArray, size_t size)
+{
+	std::vector<int> numbers(numbersArray, numbersArray + size);
+	if(numbers.size() + _span.size() > _size)
+		maxSizeException();
+	_span.insert(_span.end(), numbers.begin(), numbers.end());
+}
+
 std::exception Span::maxSizeException()
 {
-	throw std::runtime_error("Error : Span is full");
+	throw std::runtime_error("Error : Not enough space in span");
 }
 
 std::exception Span::invalidSpanException()

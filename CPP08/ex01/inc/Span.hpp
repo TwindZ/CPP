@@ -15,6 +15,7 @@ class Span
 		int findShortestSpan();
 		int findLongestSpan();
 		int findCurrentSpan(int a, int b);
+		int	countNumberList(int const& numberList);
 
 	public:
 
@@ -27,6 +28,7 @@ class Span
 		int shortestSpan();
 		int longestSpan();
 		void print();
+		void addNumbersArray(int * numbersArray, size_t size);
 
 		std::exception maxSizeException();
 		std::exception invalidSpanException();
