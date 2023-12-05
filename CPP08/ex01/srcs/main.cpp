@@ -1,30 +1,34 @@
 #include <iostream>
 #include <vector>
-#include <list>
+#include <cstdlib>
+#include <ctime>
 #include "../inc/Span.hpp"
 
 using std::string;
 using std::cout;
 using std::endl;
 
+int genRandomNumber()
+{
+	return rand() % 100;
+}
+
 int main()
 {
 	size_t spanSize = 10;
 	Span span1(spanSize);
 	Span span2(1);
-	
+	std::vector<int> randomNumbers(10);
 	srand(time(0));
-	for(size_t i = 0; i < spanSize; ++i)
-	{
-		span1.addNumber(rand() % 500);
-	}	
+	std::generate(randomNumbers.begin(), randomNumbers.end(), genRandomNumber);
+	span1.addNumber(randomNumbers.begin(), randomNumbers.end());
 
 	cout << endl << "############################################################"<< endl;
 	cout << "SPAN1 TEST"<< endl;
 	span1.print();
 	cout << "Sortest span1 : " << span1.shortestSpan() << endl;
 	cout << "Longest span1 : " << span1.longestSpan() << endl;
-	
+
 	cout << endl << "############################################################"<< endl;
 	cout << "TEST SPAN2 (one number) EXCEPTION"<< endl;
 	span2.addNumber(3);
@@ -70,14 +74,13 @@ int main()
 	std::cout << sp.longestSpan() << std::endl;
 	
 	cout << endl << "############################################################"<< endl;
-	cout << "TEST ADDNUMBERSARRAY" << endl;
-	int numbersArray[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	cout << "TEST ADDNUMBER (ARRAY)" << endl;
 	Span span4(11);
 	span4.addNumber(0);
-	span4.addNumbersArray(numbersArray, 5);
+	span4.addNumber(randomNumbers.begin(), randomNumbers.begin() + 5);
 	try
 	{
-		span4.addNumbersArray(numbersArray, 5);
+		span4.addNumber(randomNumbers.begin(), randomNumbers.begin() + 6);
 	}
 	catch(const std::exception& e)
 	{
@@ -85,7 +88,5 @@ int main()
 	}
 	
 	span4.print();
-	cout << "Longest span4 : " << span4.longestSpan() << endl;
-
-	
+	cout << "Longest span4 : " << span4.longestSpan() << endl;	
 }

@@ -3,6 +3,8 @@
 
 # include <iostream>
 # include <vector>
+# include <algorithm>
+
 
 class Span
 {
@@ -12,10 +14,8 @@ class Span
 		std::vector<int> _span;
 		
 		Span();
-		int findShortestSpan();
-		int findLongestSpan();
-		int findCurrentSpan(int a, int b);
-		int	countNumberList(int const& numberList);
+		uint32_t findCurrentSpan(int const& a, int const& b)const;
+		uint32_t findShortestSpan()const;
 
 	public:
 
@@ -24,14 +24,14 @@ class Span
 		Span & operator=(Span const& Copy);
 		~Span();
 
-		void addNumber(int number);
-		int shortestSpan();
-		int longestSpan();
+		uint32_t shortestSpan()const;
+		uint32_t longestSpan()const;
 		void print();
-		void addNumbersArray(int * numbersArray, size_t size);
+		void addNumber(int number);
+		void addNumber(std::vector<int>::iterator itBegin, std::vector<int>::iterator itEnd);
 
-		std::exception maxSizeException();
-		std::exception invalidSpanException();
+		std::exception maxSizeException()const;
+		std::exception invalidSpanException()const;
 
 };
 

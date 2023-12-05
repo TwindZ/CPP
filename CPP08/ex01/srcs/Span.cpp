@@ -1,5 +1,4 @@
 #include "../inc/Span.hpp"
-#include <limits>
 
 using std::cout;
 using std::endl;
@@ -36,31 +35,25 @@ Span::~Span()
 	cout << "Span destructor call" << endl;
 }
 
-void Span::addNumber(int number)
-{
-	if(_span.size() < _size)
-		_span.push_back(number);
-	else
-		maxSizeException();
-}
-
-int Span::findCurrentSpan(int a, int b)
+uint32_t Span::findCurrentSpan(int const& a, int const& b)const
 {
 	if(a - b < 0)
 		return (a - b) * -1;
 	return a - b;
 }
 
-int Span::findShortestSpan()
+uint32_t Span::findShortestSpan()const
 {
-	int shortest = INT_MAX;
-	for(std::vector<int>::iterator it = _span.begin(); it != _span.end() - 1; it++)
+	uint32_t shortest = longestSpan();
+	std::vector<int> copy(_span);
+	std::sort(copy.begin(), copy.end());
+	for(std::vector<int>::iterator it = copy.begin(); it != copy.end() - 1; it++)
 		if(shortest > findCurrentSpan(*it, *(it + 1)))
 			shortest = findCurrentSpan(*it, *(it + 1));
 	return shortest;
 }
 
-int Span::shortestSpan()
+uint32_t Span::shortestSpan()const
 {
 	if(_size > 1)
 		return findShortestSpan();
@@ -69,22 +62,11 @@ int Span::shortestSpan()
 	return -1;
 }
 
-int Span::findLongestSpan()
+uint32_t Span::longestSpan()const
 {
-	int longest = 0;
-	for(std::vector<int>::iterator it = _span.begin(); it != _span.end() - 1; it++)
-		if(longest < findCurrentSpan(*it, *(it + 1)))
-			longest = findCurrentSpan(*it, *(it + 1));
-	return longest;
-}
-
-int Span::longestSpan()
-{
-	if(_size > 1)
-		return findLongestSpan();
-	else
+	if(_size < 2)
 		invalidSpanException();
-	return -1;
+	return *std::max_element(_span.begin(), _span.end()) - *std::min_element(_span.begin(), _span.end());
 }
 
 void Span::print()
@@ -93,20 +75,28 @@ void Span::print()
 		cout << *it << endl;
 }
 
-void Span::addNumbersArray(int * numbersArray, size_t size)
+void Span::addNumber(int number)
 {
-	std::vector<int> numbers(numbersArray, numbersArray + size);
-	if(numbers.size() + _span.size() > _size)
+	if(_span.size() < _size)
+		_span.push_back(number);
+	else
 		maxSizeException();
-	_span.insert(_span.end(), numbers.begin(), numbers.end());
 }
 
-std::exception Span::maxSizeException()
+void Span::addNumber(std::vector<int>::iterator itBegin, std::vector<int>::iterator itEnd)
+{
+	std::ptrdiff_t range = std::distance(itBegin, itEnd);
+	if(static_cast<size_t> (range) + _span.size() > _size)
+		maxSizeException();
+	_span.insert(_span.end(), itBegin, itEnd);
+}
+
+std::exception Span::maxSizeException()const
 {
 	throw std::runtime_error("Error : Not enough space in span");
 }
 
-std::exception Span::invalidSpanException()
+std::exception Span::invalidSpanException()const
 {
 	throw std::runtime_error("Error : Not enough numbers to have a span lenght");
 }
