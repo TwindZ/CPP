@@ -18,6 +18,10 @@ class MutantStack : std::stack
 
 	class iterator
 	{
+		iterator operator++();
+		iterator operator--();
+		iterator operator==(iterator right);
+		T operator*()
 
 	}
 };
