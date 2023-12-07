@@ -66,7 +66,8 @@ uint32_t Span::longestSpan()const
 {
 	if(_size < 2)
 		invalidSpanException();
-	return *std::max_element(_span.begin(), _span.end()) - *std::min_element(_span.begin(), _span.end());
+	return *std::max_element(_span.begin(), _span.end()) 
+		- *std::min_element(_span.begin(), _span.end());
 }
 
 void Span::print()
@@ -86,7 +87,7 @@ void Span::addNumber(int number)
 void Span::addNumber(std::vector<int>::iterator itBegin, std::vector<int>::iterator itEnd)
 {
 	std::ptrdiff_t range = std::distance(itBegin, itEnd);
-	if(static_cast<size_t> (range) + _span.size() > _size)
+	if(static_cast<size_t>(range) + _span.size() > _size)
 		maxSizeException();
 	_span.insert(_span.end(), itBegin, itEnd);
 }

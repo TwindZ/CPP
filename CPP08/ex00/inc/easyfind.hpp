@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <exception>
+#include <stdexcept>
 
 template <typename T>
 void easyfind(T cont, int toFind)

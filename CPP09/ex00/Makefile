@@ -1,6 +1,7 @@
-NAME = ex02
+NAME = btc
 
-SRCS =	main.cpp		\
+SRCS =	main.cpp			\
+		BitcoinExchange.cpp	\
 
 OBJS_DIR = ./objs/
 SRCS_DIR = ./srcs/
@@ -28,7 +29,7 @@ $(NAME): $(OBJS)
 run: re
 
 	@echo "${GREEN}$(NAME) RUN${NC}"
-	@./$(NAME)
+	@./$(NAME) input
 
 leaks: re 
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)

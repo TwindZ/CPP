@@ -4,26 +4,24 @@
 #include <iostream>
 #include <stack>
 
-template <typename T>
-class MutantStack : std::stack
-{
-	private:
+using std::stack;
 
+template <typename T>
+class MutantStack : public std::stack<T>
+{
 	public:
 
-	MutantStack();
-	MutantStack(MutantStack const& copy);
-	MutantStack & operator=(MutantStack copy);
-	~MutantStack();
+	MutantStack() : stack<T> (){};
+	MutantStack(MutantStack const& copy) : stack<T>(copy){};
+	MutantStack & operator=(MutantStack const& copy){
+		*this = stack<T>::operator=(copy);
+		return *this;
+	};
+	~MutantStack(){};
 
-	class iterator
-	{
-		iterator operator++();
-		iterator operator--();
-		iterator operator==(iterator right);
-		T operator*()
-
-	}
+	typedef typename stack<T>::container_type::iterator iterator;
+	iterator begin() { return (stack<T>::c.begin()); };
+	iterator end() { return (stack<T>::c.end()); };
 };
 
 #endif
