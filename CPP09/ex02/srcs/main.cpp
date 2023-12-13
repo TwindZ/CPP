@@ -1,22 +1,18 @@
 #include <iostream>
-#include <string>
-#include <algorithm>
-#include <cctype>
-using namespace std;
+#include "../inc/PmergeMe.hpp"
 
-class Convertir
-{
-public:
-    char operator()(char c) const
-    {
-        return toupper(c);
-    }
-};
+// J(n)=J(n−1)+2⋅J(n−2)
 
-int main()
+using std::cout;
+using std::cerr;
+using std::endl;
+
+int main(int argc, char **argv)
 {
-    string chaine("Salut les developpeurs !");
-    transform(chaine.begin(), chaine.end(), chaine.begin(), Convertir());
-    cout << chaine << endl;
-    return 0;
+	if(argc < 2)
+	{
+		cerr << "Usage : ./PmergeMe <numbers (ex : 2 6 8 4 77 5 999)>" << endl;
+	}
+	PmergeMe pmergeMe;
+	pmergeMe.sort(argc - 1, argv);
 }

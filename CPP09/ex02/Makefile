@@ -1,6 +1,7 @@
-NAME = ex02
+NAME = PmergeMe
 
 SRCS =	main.cpp		\
+		PmergeMe.cpp	\
 
 OBJS_DIR = ./objs/
 SRCS_DIR = ./srcs/
@@ -28,7 +29,7 @@ $(NAME): $(OBJS)
 run: re
 
 	@echo "${GREEN}$(NAME) RUN${NC}"
-	@./$(NAME)
+	./$(NAME) 88 55 66 44 22 15 21 44 5214 552 455 88224 85 24 5 545 62 9 9 6 534 863 23 44567 867 54 98 87 12 18 32 456 4 34 90
 
 leaks: re 
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
