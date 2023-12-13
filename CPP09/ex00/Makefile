@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 run: re
 
 	@echo "${GREEN}$(NAME) RUN${NC}"
-	@./$(NAME) input
+	@./$(NAME) input_fail_test.txt
 
 leaks: re 
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)

@@ -31,7 +31,9 @@ class RPN
 		void pushToken(std::string const& token);
 		void popNumbers();
 		int findOperator(std::string const& token)const;
-		void selectOperation(int operater);
+		void printTrace(std::string const& operation)const;
+		void selectOperation(int operation);
+
 
 		std::exception missingOperatorException()const;
 		std::exception missingNumberException()const;

@@ -106,8 +106,6 @@ bool	BitcoinExchange::isDecimalValueFormatValid(string const& value)const
 	size_t dotPos = value.find('.');
 	if (dotPos != string::npos)
 	{
-		if(!std::isdigit(value.c_str()[dotPos + 1]))
-			return false;
 		size_t nextDotPos = value.find('.', dotPos + 1);
 		if (nextDotPos != string::npos)
 			return false;
@@ -166,8 +164,8 @@ void	BitcoinExchange::calculateOutput(string const& date, string const& value)co
 	double rate = it->second;
 	string rateDate = it->first;
 	double multiplication = std::stod(value) * rate;
-	cout << date << " : "<< value << " * " << rate << "(" ;
-	cout << rateDate << ") = " << multiplication << endl;
+	cout << date << " : "<< std::stod(value) << " * " << rate << "(" ;
+	cout << std::stod(rateDate) << ") = " << multiplication << endl;
 }
 
 std::exception BitcoinExchange::failToOpenFileException()

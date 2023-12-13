@@ -76,32 +76,34 @@ int RPN::findOperator(string const& token)const
 		return UNKNOWN_OPERATOR;
 }
 
-void RPN::selectOperation(int operater)
+void RPN::printTrace(string const& operation)const
 {
-	switch (operater)
+	cout << _number1 << " " << operation << " " << _number2 << " = ";
+	cout << _number1 + _number2 << endl;
+}
+
+void RPN::selectOperation(int operation)
+{
+	switch (operation)
 	{
 	case SUM:
 		_stack.push(_number1 + _number2);
-		cout << _number1 << " + " << _number2 << " = ";
-		cout << _number1 + _number2 << endl;
+		printTrace("+");
 		break;
 	case DIFFERENCE:
 		_stack.push(_number1 - _number2);
-		cout << _number1 << " - " << _number2 << " = ";
-		cout << _number1 - _number2 << endl;
+		printTrace("-");
 		break;
 	case PRODUCT:
 		_stack.push(_number1 * _number2);
-		cout << _number1 << " * " << _number2 << " = ";
-		cout << _number1 * _number2 << endl;
+		printTrace("*");
 		break;
 	case QUOTIENT:
 		if(_number2 != 0)
 			_stack.push(_number1 / _number2);
 		else
 			divisionByZeroException();
-		cout << _number1 << " / " << _number2 << " = ";
-		cout << _number1 / _number2 << endl;
+		printTrace("/");
 		break;
 	case UNKNOWN_OPERATOR:
 		invalidOperatorException();
