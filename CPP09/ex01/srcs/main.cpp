@@ -6,7 +6,6 @@ using std::endl;
 
 int main(int argc, char **argv)
 {
-	(void) argv;
 	if(argc != 2)
 	{
 		cout << "Error : Usage : RPN <\"ex: 9 8 + 5 - * 4 5 - + 6\">" << endl;

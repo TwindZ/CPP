@@ -1,5 +1,7 @@
 phonebook
 megaphone
+RPN
+btc
 *.o
 */ex*/ex*
 .DS_store

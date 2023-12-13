@@ -5,7 +5,7 @@ using std::cerr;
 using std::endl;
 using std::string;
 
-RPN::RPN()
+RPN::RPN():_stack(), _number1(0), _number2(0)
 {
 	cout << "RPN constructor call" << endl;
 }
@@ -22,6 +22,8 @@ RPN & RPN::operator=(RPN const& copy)
 	if(this != &copy)
 		return *this;
 	_stack = copy._stack;
+	_number1 = copy._number1;
+	_number2 = copy._number2;
 	return *this;
 }
 
@@ -63,32 +65,43 @@ void RPN::popNumbers()
 int RPN::findOperator(string const& token)const
 {
 	if(token == "+")
-		return(SUM);
+		return SUM;
 	else if(token == "-")
-		return(DIFFERENCE);
+		return DIFFERENCE;
 	else if(token == "*")
-		return(PRODUCT);
+		return PRODUCT;
 	else if(token == "/")
-		return(QUOTIENT);
+		return QUOTIENT;
 	else
 		return UNKNOWN_OPERATOR;
 }
 
-void RPN::selectOperation(int operation)
+void RPN::selectOperation(int operater)
 {
-	switch (operation)
+	switch (operater)
 	{
 	case SUM:
 		_stack.push(_number1 + _number2);
+		cout << _number1 << " + " << _number2 << " = ";
+		cout << _number1 + _number2 << endl;
 		break;
 	case DIFFERENCE:
 		_stack.push(_number1 - _number2);
+		cout << _number1 << " - " << _number2 << " = ";
+		cout << _number1 - _number2 << endl;
 		break;
 	case PRODUCT:
 		_stack.push(_number1 * _number2);
+		cout << _number1 << " * " << _number2 << " = ";
+		cout << _number1 * _number2 << endl;
 		break;
 	case QUOTIENT:
-		_stack.push(_number1 / _number2);
+		if(_number2 != 0)
+			_stack.push(_number1 / _number2);
+		else
+			divisionByZeroException();
+		cout << _number1 << " / " << _number2 << " = ";
+		cout << _number1 / _number2 << endl;
 		break;
 	case UNKNOWN_OPERATOR:
 		invalidOperatorException();
@@ -111,7 +124,7 @@ void RPN::calculate(string const& arg)
 	}
 	if(_stack.size() != 1)
 		missingOperatorException();
-	cout << _stack.top() << endl;
+	cout << "Total : " << _stack.top() << endl;
 }
 
 std::exception RPN::missingOperatorException()const
@@ -132,5 +145,10 @@ std::exception RPN::invalidOperatorException()const
 std::exception RPN::invalidNumberException()const
 {
 	throw std::invalid_argument("Error : Number must be between 0 and 9");
+}
+
+std::exception RPN::divisionByZeroException()const
+{
+	throw std::invalid_argument("Error : Division by zero is not allowed.");
 }
 

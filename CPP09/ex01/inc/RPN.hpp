@@ -11,6 +11,7 @@
 # include <stack>
 # include <string>
 # include <exception>
+# include <stdexcept>
 # include <sstream>
 
 class RPN
@@ -30,12 +31,13 @@ class RPN
 		void pushToken(std::string const& token);
 		void popNumbers();
 		int findOperator(std::string const& token)const;
-		void selectOperation(int operation);
+		void selectOperation(int operater);
 
 		std::exception missingOperatorException()const;
 		std::exception missingNumberException()const;
 		std::exception invalidOperatorException()const;
 		std::exception invalidNumberException()const;
+		std::exception divisionByZeroException()const;
 
 		std::stack<int> _stack;
 		int	_number1;
