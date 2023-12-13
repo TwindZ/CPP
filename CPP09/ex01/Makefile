@@ -1,6 +1,7 @@
-NAME = ex01
+NAME = RPN
 
 SRCS =	main.cpp		\
+		RPN.cpp			\
 
 OBJS_DIR = ./objs/
 SRCS_DIR = ./srcs/
@@ -28,7 +29,7 @@ $(NAME): $(OBJS)
 run: re
 
 	@echo "${GREEN}$(NAME) RUN${NC}"
-	@./$(NAME)
+	@./$(NAME) "6 9 * 8 - 9 8 7 + - *"
 
 leaks: re 
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)

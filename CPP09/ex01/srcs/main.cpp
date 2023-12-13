@@ -1,22 +1,19 @@
 #include <iostream>
-#include <string>
-#include <algorithm>
-#include <cctype>
-using namespace std;
+#include "../inc/RPN.hpp"
 
-class Convertir
-{
-public:
-    char operator()(char c) const
-    {
-        return toupper(c);
-    }
-};
+using std::cout;
+using std::endl;
 
-int main()
+int main(int argc, char **argv)
 {
-    string chaine("Salut les developpeurs !");
-    transform(chaine.begin(), chaine.end(), chaine.begin(), Convertir());
-    cout << chaine << endl;
-    return 0;
+	(void) argv;
+	if(argc != 2)
+	{
+		cout << "Error : Usage : RPN <\"ex: 9 8 + 5 - * 4 5 - + 6\">" << endl;
+		std::exit(EXIT_FAILURE);
+	}
+	RPN rpn;
+	rpn.execute(argv[1]);
+
+	return 0;
 }

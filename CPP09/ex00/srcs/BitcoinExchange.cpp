@@ -44,7 +44,7 @@ void BitcoinExchange::exchanger(char *argv)
 
 void BitcoinExchange::openCsv()
 {
-		_csvFileStream.open("data.cs");
+		_csvFileStream.open("data.csv");
 		if (!_csvFileStream.is_open())
 			failToOpenFileException();
 }
