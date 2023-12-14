@@ -28,15 +28,21 @@ PmergeMe::~PmergeMe()
 	cout << "PmergeMe destructor call" << endl;
 }
 
+void PmergeMe::parseArgv(char **argv)
+{
+	for(int i = 1; argv[i]; i++)
+		for(int j = 0; argv[i][j]; j++)
+			if(!std::isdigit(argv[i][j]))
+				invalidArgumentException();
+}
+
 void PmergeMe::convertToVectorPair(int argc, char **argv)
 {
 	for(int i = 1; i <= argc; i += 2)
 	{
 		if(argv[i + 1])
-		{
-			std::pair<unsigned int, unsigned int> pair(std::atol(argv[i]), std::atol(argv[i + 1]));
-			_vector.push_back(pair);
-		}	
+			_vector.push_back(std::pair<unsigned int, unsigned int>
+				(std::atol(argv[i]), std::atol(argv[i + 1])));
 		else
 		{
 			_straggler = std::atol(argv[i]);
@@ -163,23 +169,31 @@ void PmergeMe::mergeStragglerToSorted()
 void PmergeMe::sortVector(int argc, char **argv)
 {
 	convertToVectorPair(argc, argv);
+	clock_t time = std::clock();
 	sortEachPair();
-						printVector();
+						// printVector();
 	sortBySecond();
 	addSecondToSorted();
-						printSortedVector();
+						// printSortedVector();
 	mergeToSorted();
-						printVector();
-	// findInsertionIndex(89);
+	double time_elapsed = static_cast<double> (std::clock() - time)/ CLOCKS_PER_SEC;
+						// printVector();
 						printSortedVector();
+	cout << "Time : " << std::fixed << time_elapsed << endl;
 						// printJacob();
 }
 
 void PmergeMe::sort(int argc, char **argv)
 {
-	
-	//TODO parseArgv();
-	sortVector(argc, argv);
+	try
+	{
+		parseArgv(argv);
+		sortVector(argc, argv);
+	}
+	catch(std::exception const& e)
+	{
+		cout << e.what() << endl;
+	}
 }
 
 void PmergeMe::printVector()
@@ -194,7 +208,6 @@ void PmergeMe::printSortedVector()
 	for(size_t i = 0; i < _sortedVector.size(); i++)
 		cout << _sortedVector[i] <<  ", " ;
 	cout << endl;
-	
 }
 
 void PmergeMe::printJacob()
@@ -202,5 +215,9 @@ void PmergeMe::printJacob()
 	for(size_t i = 0; i < _jacobsthal.size(); i++)
 		cout << _jacobsthal[i] <<  ", " ;
 	cout << endl;
-	
+}
+
+std::exception PmergeMe::invalidArgumentException()
+{
+	throw std::invalid_argument("Error : Invalid argument.");
 }

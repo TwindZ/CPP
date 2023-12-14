@@ -3,6 +3,10 @@
 
 # include <iostream>
 # include <vector>
+# include <exception>
+# include <stdexcept>
+# include <ctime>
+# include <unistd.h>
 
 typedef std::vector<unsigned long>::iterator vector_it;
 
@@ -36,6 +40,8 @@ class PmergeMe
 		void createJacobVector(size_t size);
 		size_t insertByJacob();
 		void insertRemain(size_t i);
+		void parseArgv(char **argv);
+		std::exception invalidArgumentException();
 		void chrono();
 
 
