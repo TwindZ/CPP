@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 run: re
 
 	@echo "${GREEN}$(NAME) RUN${NC}"
-	./$(NAME) 88 55 66 44 22 15 21 44 85 24 5 62 9 9 6 23 54 98 87 12 18 32 4 34 90
+	./$(NAME) 21 20 19 18 17 16 15 14 13 12 11 10 9
 
 leaks: re 
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)

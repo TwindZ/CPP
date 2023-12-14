@@ -3,7 +3,7 @@
 using std::cout;
 using std::endl;
 
-PmergeMe::PmergeMe():_vector(), _sortedVector(), _straggler()
+PmergeMe::PmergeMe():_vector(), _sortedVector(), _straggler(), _stragglerStatus(false)
 {
 	cout << "PmergeMe constructor call" << endl;
 }
@@ -38,7 +38,10 @@ void PmergeMe::convertToVectorPair(int argc, char **argv)
 			_vector.push_back(pair);
 		}	
 		else
+		{
 			_straggler = std::atol(argv[i]);
+			_stragglerStatus = true;
+		}	
 	}
 }
 
@@ -73,20 +76,77 @@ void PmergeMe::addSecondToSorted()
 		_sortedVector.push_back(_vector[i].second);
 }
 
-void PmergeMe::mergeFirstToSorted()
+vector_it PmergeMe::findRangeMiddle(vector_it begin, vector_it end)
 {
-	std::vector<unsigned long>::iterator it;
-	for(size_t i = 0; i < _vector.size(); i++)
+	std::ptrdiff_t range = std::distance(begin, end);
+	return begin + range / 2;
+}
+
+void PmergeMe::precisionInsert(unsigned int first, vector_it middle)
+{
+	if(first < *middle && first > *(middle - 1))
+			_sortedVector.insert(middle, first);
+	else if(first < *middle && first < *(middle - 1))
+		_sortedVector.insert(middle - 1, first);
+	else
+		_sortedVector.insert(middle + 1, first);
+}
+
+void PmergeMe::binaryInsertion(unsigned int first)
+{
+	vector_it begin = _sortedVector.begin();
+	vector_it end = _sortedVector.end();
+	vector_it middle;
+
+	while(begin != end - 1)
 	{
-		for(it = _sortedVector.begin(); it < _sortedVector.end(); it++)
+		middle = findRangeMiddle(begin, end);
+		if(first > *middle)
+			begin = middle;
+		else
+			end = middle;
+	}
+	precisionInsert(first, middle);
+}
+
+void PmergeMe::createJacobVector(size_t size)
+{
+	for(size_t i = 1; i < size; i++)
+	{
+		if(i == 1)
 		{
-			if(_vector[i].first < *it)
-			{
-				_sortedVector.insert(it, _vector[i].first);
-				break;
-			}	
+			_jacobsthal.push_back(1);
+			_jacobsthal.push_back(3);
+		}	
+		else
+			_jacobsthal.push_back(_jacobsthal[i - 1] + (2 * _jacobsthal[i - 2]));
+	}
+}
+
+void PmergeMe::mergeToSorted()
+{
+	// _sortedVector.insert(_sortedVector.begin(), _vector[0].first);
+	createJacobVector(_vector.size());
+	size_t i;
+	for(i = 0; _jacobsthal[i] <= _vector.size() ; i++)
+	{
+		for(unsigned int j = _jacobsthal[i]; j > _jacobsthal[i - 1]; j--)
+		{
+			binaryInsertion(_vector[j - 1].first);
+			cout << "test1 : " << j - 1 << endl;
 		}
 	}
+	if(_vector.size() > _jacobsthal[i - 1])
+	{
+		cout << "test2 : " << endl;
+		for(unsigned int j = _vector.size(); j > _jacobsthal[i - 1]; j--)
+		{
+			binaryInsertion(_vector[j - 1].first);
+			cout << "test3 : " << j - 1 << endl;
+		}
+	}	
+	if(_stragglerStatus == true)
+		binaryInsertion(_straggler);
 }
 
 void PmergeMe::mergeStragglerToSorted()
@@ -106,40 +166,15 @@ void PmergeMe::sortVector(int argc, char **argv)
 {
 	convertToVectorPair(argc, argv);
 	sortEachPair();
-	printVector();
+						printVector();
 	sortBySecond();
 	addSecondToSorted();
-	mergeFirstToSorted();
-	mergeStragglerToSorted();
-	printVector();
-	findInsertionIndex(89);
-	printSortedVector();
-}
-
-vector_it PmergeMe::findRangeMiddle(vector_it begin, vector_it end)
-{
-	std::ptrdiff_t range = std::distance(begin, end);
-	return begin + range / 2;
-}
-
-void PmergeMe::findInsertionIndex(unsigned int first)
-{
-	vector_it begin = _sortedVector.begin();
-	vector_it end = _sortedVector.end();
-	vector_it middle;
-
-	while(begin != end - 1)
-	{
-		middle = findRangeMiddle(begin, end);
-		if(first < *middle)
-			end = middle;
-		else
-			begin = middle;
-	}
-	if(first < *middle)
-		_sortedVector.insert(middle, first);
-	else
-		_sortedVector.insert(middle + 1, first);
+						printSortedVector();
+	mergeToSorted();
+						printVector();
+	// findInsertionIndex(89);
+						printSortedVector();
+						printJacob();
 }
 
 void PmergeMe::sort(int argc, char **argv)
@@ -154,14 +189,20 @@ void PmergeMe::printVector()
 	for(size_t i = 0; i < _vector.size(); i++)
 		cout << "First : " << _vector[i].first << " Second : " << _vector[i].second << endl;
 	cout << "Straggler : " << _straggler << endl;
-	
 }
 
 void PmergeMe::printSortedVector()
 {
-	cout << _sortedVector[0];
-	for(size_t i = 1; i < _sortedVector.size(); i++)
-		cout <<  ", " << _sortedVector[i];
+	for(size_t i = 0; i < _sortedVector.size(); i++)
+		cout << _sortedVector[i] <<  ", " ;
+	cout << endl;
+	
+}
+
+void PmergeMe::printJacob()
+{
+	for(size_t i = 0; i < _jacobsthal.size(); i++)
+		cout << _jacobsthal[i] <<  ", " ;
 	cout << endl;
 	
 }
