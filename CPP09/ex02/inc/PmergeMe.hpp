@@ -27,6 +27,9 @@ class PmergeMe
 		void addSecondToSorted();
 		void mergeFirstToSorted();
 		void mergeStragglerToSorted();
+		void sortVector(int argc, char **argv);
+		void findInsertionIndex(unsigned int first);
+		vector_it findRangeMiddle(vector_it begin, vector_it end);
 
 		void chrono();
 

@@ -102,7 +102,7 @@ void PmergeMe::mergeStragglerToSorted()
 	}
 }
 
-void PmergeMe::sort(int argc, char **argv)
+void PmergeMe::sortVector(int argc, char **argv)
 {
 	convertToVectorPair(argc, argv);
 	sortEachPair();
@@ -112,7 +112,41 @@ void PmergeMe::sort(int argc, char **argv)
 	mergeFirstToSorted();
 	mergeStragglerToSorted();
 	printVector();
+	findInsertionIndex(89);
 	printSortedVector();
+}
+
+vector_it PmergeMe::findRangeMiddle(vector_it begin, vector_it end)
+{
+	std::ptrdiff_t range = std::distance(begin, end);
+	return begin + range / 2;
+}
+
+void PmergeMe::findInsertionIndex(unsigned int first)
+{
+	vector_it begin = _sortedVector.begin();
+	vector_it end = _sortedVector.end();
+	vector_it middle;
+
+	while(begin != end - 1)
+	{
+		middle = findRangeMiddle(begin, end);
+		if(first < *middle)
+			end = middle;
+		else
+			begin = middle;
+	}
+	if(first < *middle)
+		_sortedVector.insert(middle, first);
+	else
+		_sortedVector.insert(middle + 1, first);
+}
+
+void PmergeMe::sort(int argc, char **argv)
+{
+	
+	//TODO parseArgv();
+	sortVector(argc, argv);
 }
 
 void PmergeMe::printVector()
