@@ -86,7 +86,7 @@ void PmergeMe::precisionInsert(unsigned int first, vector_it middle)
 {
 	if(first < *middle && first > *(middle - 1))
 			_sortedVector.insert(middle, first);
-	else if(first < *middle && first < *(middle - 1))
+	else if(first < *middle && first <= *(middle - 1))
 		_sortedVector.insert(middle - 1, first);
 	else
 		_sortedVector.insert(middle + 1, first);
@@ -123,28 +123,26 @@ void PmergeMe::createJacobVector(size_t size)
 	}
 }
 
-void PmergeMe::mergeToSorted()
+size_t PmergeMe::insertByJacob()
 {
-	// _sortedVector.insert(_sortedVector.begin(), _vector[0].first);
-	createJacobVector(_vector.size());
 	size_t i;
 	for(i = 0; _jacobsthal[i] <= _vector.size() ; i++)
-	{
 		for(unsigned int j = _jacobsthal[i]; j > _jacobsthal[i - 1]; j--)
-		{
 			binaryInsertion(_vector[j - 1].first);
-			cout << "test1 : " << j - 1 << endl;
-		}
-	}
+	return i;
+}
+
+void PmergeMe::insertRemain(size_t i)
+{
 	if(_vector.size() > _jacobsthal[i - 1])
-	{
-		cout << "test2 : " << endl;
 		for(unsigned int j = _vector.size(); j > _jacobsthal[i - 1]; j--)
-		{
 			binaryInsertion(_vector[j - 1].first);
-			cout << "test3 : " << j - 1 << endl;
-		}
-	}	
+}
+
+void PmergeMe::mergeToSorted()
+{
+	createJacobVector(_vector.size());
+	insertRemain(insertByJacob());
 	if(_stragglerStatus == true)
 		binaryInsertion(_straggler);
 }
@@ -174,7 +172,7 @@ void PmergeMe::sortVector(int argc, char **argv)
 						printVector();
 	// findInsertionIndex(89);
 						printSortedVector();
-						printJacob();
+						// printJacob();
 }
 
 void PmergeMe::sort(int argc, char **argv)

@@ -34,8 +34,8 @@ class PmergeMe
 		void sortVector(int argc, char **argv);
 		void createJacobNumber(size_t size);
 		void createJacobVector(size_t size);
-
-
+		size_t insertByJacob();
+		void insertRemain(size_t i);
 		void chrono();
 
 
