@@ -8,12 +8,12 @@
 # include <ctime>
 # include <limits>
 
-
+template <typename container, typename pairs_container>
 class PmergeMe
 {
 	public:
 
-		typedef std::vector<unsigned long>::iterator vector_it;
+		typedef typename container::iterator container_it;
 		PmergeMe();
 		PmergeMe(PmergeMe const& Copy);
 		PmergeMe & operator=(PmergeMe const& Copy);
@@ -31,8 +31,8 @@ class PmergeMe
 		void sortBySecond();
 		void addSecondToSorted();
 		void binaryInsertion(unsigned int first);
-		vector_it findRangeMiddle(vector_it begin, vector_it end);
-		void precisionInsert(unsigned int first, vector_it middle);
+		PmergeMe<container, pairs_container>::container_it findRangeMiddle(container_it begin, container_it end);
+		void precisionInsert(unsigned int first, container_it middle);
 		void mergeToSorted();
 		void mergeStragglerToSorted();
 		void sortVector(int argc, char **argv);
@@ -48,11 +48,13 @@ class PmergeMe
 		void vectorAlgo();
 
 
-		std::vector< std::pair<unsigned long, unsigned long> > _vector;
-		std::vector<unsigned long> _sortedVector;
-		std::vector<unsigned long> _jacobsthal;
-		unsigned int _straggler;
-		bool		_stragglerStatus;
+		pairs_container	_pairs;
+		container 		_sortedContainer;
+		container		_jacobsthal;
+		unsigned int	_straggler;
+		bool			_stragglerStatus;
 };
+
+# include "../srcs/PmergeMe.tpp"
 
 #endif
