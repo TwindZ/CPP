@@ -48,11 +48,11 @@ class PmergeMe
 		void vectorAlgo();
 
 
-		pairs_container	_pairs;
-		container 		_sortedContainer;
-		container		_jacobsthal;
-		unsigned int	_straggler;
-		bool			_stragglerStatus;
+		pairs_container				_pairs;
+		container 					_sortedContainer;
+		std::vector<unsigned long>	_jacobsthal;
+		unsigned int				_straggler;
+		bool						_stragglerStatus;
 };
 
 # include "../srcs/PmergeMe.tpp"

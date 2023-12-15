@@ -5,7 +5,8 @@ using std::cout;
 using std::endl;
 
 template <typename container, typename pairs_container>
-PmergeMe<container, pairs_container>::PmergeMe()
+PmergeMe<container, pairs_container>::PmergeMe():
+_pairs(), _sortedContainer(), _jacobsthal(), _straggler(), _stragglerStatus(false)
 {
 	cout << "PmergeMe constructor call" << endl;
 }
@@ -201,6 +202,7 @@ void PmergeMe<container, pairs_container>::mergeStragglerToSorted()
 template <typename container, typename pairs_container>
 void PmergeMe<container, pairs_container>::vectorAlgo()
 {
+
 	sortEachPair();
 	sortBySecond();
 	addSecondToSorted();
@@ -210,6 +212,7 @@ void PmergeMe<container, pairs_container>::vectorAlgo()
 template <typename container, typename pairs_container>
 void PmergeMe<container, pairs_container>::sortVector(int argc, char **argv)
 {
+
 	convertToVectorPair(argc, argv);
 	clock_t time = std::clock();
 	vectorAlgo();
