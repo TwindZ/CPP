@@ -28,12 +28,21 @@ PmergeMe::~PmergeMe()
 	cout << "PmergeMe destructor call" << endl;
 }
 
+void PmergeMe::checkMaxUInt(unsigned long number)
+{
+	if(number > std::numeric_limits<unsigned int>::max())
+		maxUnsignedIntException();
+}
+
 void PmergeMe::parseArgv(char **argv)
 {
 	for(int i = 1; argv[i]; i++)
+	{
 		for(int j = 0; argv[i][j]; j++)
 			if(!std::isdigit(argv[i][j]))
 				invalidArgumentException();
+		checkMaxUInt(std::atol(argv[i]));
+	}
 }
 
 void PmergeMe::convertToVectorPair(int argc, char **argv)
@@ -82,16 +91,16 @@ void PmergeMe::addSecondToSorted()
 		_sortedVector.push_back(_vector[i].second);
 }
 
-vector_it PmergeMe::findRangeMiddle(vector_it begin, vector_it end)
+PmergeMe::PmergeMe::vector_it PmergeMe::findRangeMiddle(PmergeMe::vector_it begin, PmergeMe::vector_it end)
 {
 	std::ptrdiff_t range = std::distance(begin, end);
 	return begin + range / 2;
 }
 
-void PmergeMe::precisionInsert(unsigned int first, vector_it middle)
+void PmergeMe::precisionInsert(unsigned int first, PmergeMe::vector_it middle)
 {
 	if(first < *middle && first > *(middle - 1))
-			_sortedVector.insert(middle, first);
+		_sortedVector.insert(middle, first);
 	else if(first < *middle && first <= *(middle - 1))
 		_sortedVector.insert(middle - 1, first);
 	else
@@ -100,9 +109,9 @@ void PmergeMe::precisionInsert(unsigned int first, vector_it middle)
 
 void PmergeMe::binaryInsertion(unsigned int first)
 {
-	vector_it begin = _sortedVector.begin();
-	vector_it end = _sortedVector.end();
-	vector_it middle;
+	PmergeMe::vector_it begin = _sortedVector.begin();
+	PmergeMe::vector_it end = _sortedVector.end();
+	PmergeMe::vector_it middle;
 
 	while(begin != end - 1)
 	{
@@ -166,21 +175,21 @@ void PmergeMe::mergeStragglerToSorted()
 	}
 }
 
+void PmergeMe::vectorAlgo()
+{
+	sortEachPair();
+	sortBySecond();
+	addSecondToSorted();
+	mergeToSorted();
+}
+
 void PmergeMe::sortVector(int argc, char **argv)
 {
 	convertToVectorPair(argc, argv);
 	clock_t time = std::clock();
-	sortEachPair();
-						// printVector();
-	sortBySecond();
-	addSecondToSorted();
-						// printSortedVector();
-	mergeToSorted();
-	double time_elapsed = static_cast<double> (std::clock() - time)/ CLOCKS_PER_SEC;
-						// printVector();
-						printSortedVector();
-	cout << "Time : " << std::fixed << time_elapsed << endl;
-						// printJacob();
+	vectorAlgo();
+	printSortedVector(static_cast<double> (std::clock() - time)/ CLOCKS_PER_SEC);
+	isSorted();
 }
 
 void PmergeMe::sort(int argc, char **argv)
@@ -188,7 +197,7 @@ void PmergeMe::sort(int argc, char **argv)
 	try
 	{
 		parseArgv(argv);
-		sortVector(argc, argv);
+		sortVector(argc - 1, argv);
 	}
 	catch(std::exception const& e)
 	{
@@ -203,12 +212,12 @@ void PmergeMe::printVector()
 	cout << "Straggler : " << _straggler << endl;
 }
 
-void PmergeMe::printSortedVector()
+void PmergeMe::printSortedVector(double time_elapsed)
 {
 	for(size_t i = 0; i < _sortedVector.size(); i++)
 		cout << _sortedVector[i] <<  ", " ;
 	cout << endl;
-}
+cout << "Vector sorted in : " << std::fixed << time_elapsed << " seconds." << endl;}
 
 void PmergeMe::printJacob()
 {
@@ -217,7 +226,19 @@ void PmergeMe::printJacob()
 	cout << endl;
 }
 
+void PmergeMe::isSorted()
+{
+	for(size_t i = 0; i < _sortedVector.size() - 1; i++)
+		if(_sortedVector[i] > _sortedVector[i + 1])
+			cout << "Error : Sorting fail." << endl;
+}
+
 std::exception PmergeMe::invalidArgumentException()
 {
 	throw std::invalid_argument("Error : Invalid argument.");
+}
+
+std::exception PmergeMe::maxUnsignedIntException()
+{
+	throw std::invalid_argument("Error : Invalid unsigned int");
 }

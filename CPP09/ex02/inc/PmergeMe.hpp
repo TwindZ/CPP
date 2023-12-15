@@ -6,14 +6,14 @@
 # include <exception>
 # include <stdexcept>
 # include <ctime>
-# include <unistd.h>
+# include <limits>
 
-typedef std::vector<unsigned long>::iterator vector_it;
 
 class PmergeMe
 {
 	public:
 
+		typedef std::vector<unsigned long>::iterator vector_it;
 		PmergeMe();
 		PmergeMe(PmergeMe const& Copy);
 		PmergeMe & operator=(PmergeMe const& Copy);
@@ -21,7 +21,7 @@ class PmergeMe
 
 		void sort(int argc, char **argv);
 		void printVector();
-		void printSortedVector();
+		void printSortedVector(double time_elapsed);
 		void printJacob();
 	
 	private:
@@ -42,7 +42,10 @@ class PmergeMe
 		void insertRemain(size_t i);
 		void parseArgv(char **argv);
 		std::exception invalidArgumentException();
-		void chrono();
+		std::exception maxUnsignedIntException();
+		void checkMaxUInt(unsigned long number);
+		void isSorted();
+		void vectorAlgo();
 
 
 		std::vector< std::pair<unsigned long, unsigned long> > _vector;

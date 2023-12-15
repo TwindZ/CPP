@@ -29,7 +29,8 @@ $(NAME): $(OBJS)
 run: re
 
 	@echo "${GREEN}$(NAME) RUN${NC}"
-	./$(NAME) 17 158 49 84 185 
+	./$(NAME) `jot -r 30 0 1000 | tr '\n' ' '`
+
 leaks: re 
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 	rm -rf ./$(NAME).dSYM
