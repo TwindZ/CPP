@@ -28,8 +28,9 @@ $(NAME): $(OBJS)
 run: re
 
 	@echo "${GREEN}$(NAME) RUN${NC}"
-	./$(NAME) `jot -r 10 0 100 | tr '\n' ' '` > output.txt
-	./$(NAME) `jot -r 15 0 100 | tr '\n' ' '` > output.txt
+	rm -rf output.txt
+	./$(NAME) `jot -r 10 0 100 | tr '\n' ' '` >> output.txt
+	./$(NAME) `jot -r 15 0 100 | tr '\n' ' '` >> output.txt
 	./$(NAME) `jot -r 50 0 500 | tr '\n' ' '` >> output.txt
 	./$(NAME) `jot -r 55 0 500 | tr '\n' ' '` >> output.txt
 	./$(NAME) `jot -r 100 0 1000 | tr '\n' ' '` >> output.txt

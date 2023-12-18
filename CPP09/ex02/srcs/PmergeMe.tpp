@@ -205,6 +205,7 @@ void PmergeMe<container, pairs_container>::sortNumber(int argc, char **argv)
 	convertToVectorPair(argc, argv);
 	clock_t time = std::clock();
 	algo();
+	printUnsorted(argv);
 	printSorted(static_cast<double> (std::clock() - time)/ CLOCKS_PER_SEC);
 	isSorted();
 }
@@ -222,10 +223,24 @@ void PmergeMe<container, pairs_container>::sort(int argc, char **argv)
 		cout << e.what() << endl;
 	}
 }
+template <typename container, typename pairs_container>
+void PmergeMe<container, pairs_container>::printUnsorted(char **argv)
+
+{
+	cout << "Unsorted :" ;
+	for(int i = 1; argv[i]; i++)
+	{
+		std:: string arg(argv[i]);
+		cout << arg << ", ";
+	}	
+	cout << endl;
+
+}
 
 template <typename container, typename pairs_container>
 void PmergeMe<container, pairs_container>::printSorted(double time_elapsed)
 {
+	cout << "Sorted : ";
 	for(size_t i = 0; i < _sortedContainer.size(); i++)
 		cout << _sortedContainer[i] <<  ", " ;
 	cout << endl;

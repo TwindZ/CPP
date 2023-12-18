@@ -45,6 +45,7 @@ class PmergeMe
 		void isSorted();
 		void algo();
 		void printSorted(double time_elapsed);
+		void printUnsorted(char **argv);
 		void printPairs();
 		void printJacob();
 		std::exception invalidArgumentException();
