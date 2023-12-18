@@ -2,6 +2,8 @@ phonebook
 megaphone
 RPN
 btc
+PmergeMe
+output.txt
 *.o
 */ex*/ex*
 .DS_store
