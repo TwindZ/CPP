@@ -6,9 +6,16 @@ using std::endl;
 
 template <typename container, typename pairs_container>
 PmergeMe<container, pairs_container>::PmergeMe():
-_pairs(), _sortedContainer(), _jacobsthal(), _straggler(), _stragglerStatus(false)
+_pairs(), _sortedContainer(), _jacobsthal(), _straggler(), _stragglerStatus(false), _type()
 {
 	cout << "PmergeMe constructor call" << endl;
+}
+
+template <typename container, typename pairs_container>
+PmergeMe<container, pairs_container>::PmergeMe(std::string type):
+_pairs(), _sortedContainer(), _jacobsthal(), _straggler(), _stragglerStatus(false), _type(type)
+{
+	cout << "Overload PmergeMe constructor call" << endl;
 }
 
 template <typename container, typename pairs_container>
@@ -88,7 +95,8 @@ void PmergeMe<container, pairs_container>::sortBySecond()
 {
 	size_t i = 0;
 	
-	while(i < _pairs.size() - 1)
+	//need while loop because of the reset i = 0
+	while(i < _pairs.size() - 1) 
 	{
 		if(_pairs[i].second > _pairs[i + 1].second)
 		{
@@ -108,10 +116,12 @@ void PmergeMe<container, pairs_container>::addSecondToSorted()
 }
 
 template <typename container, typename pairs_container>
-typename PmergeMe<container, pairs_container>::container_it PmergeMe<container, pairs_container>::findRangeMiddle(container_it begin, container_it end)
+void PmergeMe<container, pairs_container>::createJacobVector(size_t size)
 {
-	std::ptrdiff_t range = std::distance(begin, end);
-	return begin + range / 2;
+	_jacobsthal.push_back(1);
+	_jacobsthal.push_back(3);
+	for(size_t i = 2; i < size; i++)
+		_jacobsthal.push_back(_jacobsthal[i - 1] + (2 * _jacobsthal[i - 2]));
 }
 
 template <typename container, typename pairs_container>
@@ -123,6 +133,14 @@ void PmergeMe<container, pairs_container>::precisionInsert(unsigned int first, c
 		_sortedContainer.insert(middle - 1, first);
 	else
 		_sortedContainer.insert(middle + 1, first);
+}
+
+template <typename container, typename pairs_container>
+typename PmergeMe<container, pairs_container>::container_it
+PmergeMe<container, pairs_container>::findRangeMiddle(container_it begin, container_it end)
+{
+	std::ptrdiff_t range = std::distance(begin, end);
+	return begin + range / 2;
 }
 
 template <typename container, typename pairs_container>
@@ -141,21 +159,6 @@ void PmergeMe<container, pairs_container>::binaryInsertion(unsigned int first)
 			end = middle;
 	}
 	precisionInsert(first, middle);
-}
-
-template <typename container, typename pairs_container>
-void PmergeMe<container, pairs_container>::createJacobVector(size_t size)
-{
-	for(size_t i = 1; i < size; i++)
-	{
-		if(i == 1)
-		{
-			_jacobsthal.push_back(1);
-			_jacobsthal.push_back(3);
-		}	
-		else
-			_jacobsthal.push_back(_jacobsthal[i - 1] + (2 * _jacobsthal[i - 2]));
-	}
 }
 
 template <typename container, typename pairs_container>
@@ -186,23 +189,8 @@ void PmergeMe<container, pairs_container>::mergeToSorted()
 }
 
 template <typename container, typename pairs_container>
-void PmergeMe<container, pairs_container>::mergeStragglerToSorted()
+void PmergeMe<container, pairs_container>::algo()
 {
-	container_it it;
-	for(it = _sortedContainer.begin(); it < _sortedContainer.end(); it++)
-	{
-		if(_straggler < *it)
-		{
-			_sortedContainer.insert(it, _straggler);
-			break;
-		}	
-	}
-}
-
-template <typename container, typename pairs_container>
-void PmergeMe<container, pairs_container>::vectorAlgo()
-{
-
 	sortEachPair();
 	sortBySecond();
 	addSecondToSorted();
@@ -210,13 +198,13 @@ void PmergeMe<container, pairs_container>::vectorAlgo()
 }
 
 template <typename container, typename pairs_container>
-void PmergeMe<container, pairs_container>::sortVector(int argc, char **argv)
+void PmergeMe<container, pairs_container>::sortNumber(int argc, char **argv)
 {
 
 	convertToVectorPair(argc, argv);
 	clock_t time = std::clock();
-	vectorAlgo();
-	printSortedVector(static_cast<double> (std::clock() - time)/ CLOCKS_PER_SEC);
+	algo();
+	printSorted(static_cast<double> (std::clock() - time)/ CLOCKS_PER_SEC);
 	isSorted();
 }
 
@@ -226,7 +214,7 @@ void PmergeMe<container, pairs_container>::sort(int argc, char **argv)
 	try
 	{
 		parseArgv(argv);
-		sortVector(argc - 1, argv);
+		sortNumber(argc - 1, argv);
 	}
 	catch(std::exception const& e)
 	{
@@ -235,36 +223,12 @@ void PmergeMe<container, pairs_container>::sort(int argc, char **argv)
 }
 
 template <typename container, typename pairs_container>
-void PmergeMe<container, pairs_container>::printVector()
-{
-	for(size_t i = 0; i < _pairs.size(); i++)
-		cout << "First : " << _pairs[i].first << " Second : " << _pairs[i].second << endl;
-	cout << "Straggler : " << _straggler << endl;
-}
-
-template <typename container, typename pairs_container>
-void PmergeMe<container, pairs_container>::printSortedVector(double time_elapsed)
+void PmergeMe<container, pairs_container>::printSorted(double time_elapsed)
 {
 	for(size_t i = 0; i < _sortedContainer.size(); i++)
 		cout << _sortedContainer[i] <<  ", " ;
 	cout << endl;
-cout << "Vector sorted in : " << std::fixed << time_elapsed << " seconds." << endl;}
-
-template <typename container, typename pairs_container>
-void PmergeMe<container, pairs_container>::printJacob()
-{
-	for(size_t i = 0; i < _jacobsthal.size(); i++)
-		cout << _jacobsthal[i] <<  ", " ;
-	cout << endl;
-}
-
-template <typename container, typename pairs_container>
-void PmergeMe<container, pairs_container>::isSorted()
-{
-	for(size_t i = 0; i < _sortedContainer.size() - 1; i++)
-		if(_sortedContainer[i] > _sortedContainer[i + 1])
-			cout << "Error : Sorting fail." << endl;
-}
+cout << _type << " sorted in : " << std::fixed << time_elapsed << " seconds." << endl;}
 
 template <typename container, typename pairs_container>
 std::exception PmergeMe<container, pairs_container>::invalidArgumentException()
@@ -276,6 +240,34 @@ template <typename container, typename pairs_container>
 std::exception PmergeMe<container, pairs_container>::maxUnsignedIntException()
 {
 	throw std::invalid_argument("Error : Invalid unsigned int");
+}
+
+//debug function
+
+template <typename container, typename pairs_container>
+void PmergeMe<container, pairs_container>::printPairs()
+{
+	for(size_t i = 0; i < _pairs.size(); i++)
+		cout << "First : " << _pairs[i].first << " Second : " << _pairs[i].second << endl;
+	cout << "Straggler : " << _straggler << endl;
+}
+
+template <typename container, typename pairs_container>
+void PmergeMe<container, pairs_container>::printJacob()
+{
+	for(size_t i = 0; i < _jacobsthal.size(); i++)
+		cout << "Jacob number : " << _jacobsthal[i] <<  ", " ;
+	cout << endl;
+}
+
+template <typename container, typename pairs_container>
+void PmergeMe<container, pairs_container>::isSorted()
+{
+	for(size_t i = 0; i < _sortedContainer.size() - 1; i++)
+		if(_sortedContainer[i] > _sortedContainer[i + 1])
+			cout << "Error : Sorting fail." << endl;
+	if(_sortedContainer.size() != (_pairs.size() * 2) + _stragglerStatus ? 1 : 0)
+		cout << "Error : Missing numbers" << endl;
 }
 
 #endif
