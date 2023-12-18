@@ -78,8 +78,7 @@ int RPN::findOperator(string const& token)const
 
 void RPN::printTrace(string const& operation)const
 {
-	cout << _number1 << " " << operation << " " << _number2 << " = ";
-	cout << _number1 + _number2 << endl;
+	cout << _number1 << " " << operation << " " << _number2 << endl;
 }
 
 void RPN::selectOperation(int operation)
