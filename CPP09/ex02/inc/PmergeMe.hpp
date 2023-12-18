@@ -20,8 +20,6 @@ class PmergeMe
 		~PmergeMe();
 
 		void sort(int argc, char **argv);
-		void printPairs();
-		void printJacob();
 	
 	private:
 
@@ -47,6 +45,8 @@ class PmergeMe
 		void isSorted();
 		void algo();
 		void printSorted(double time_elapsed);
+		void printPairs();
+		void printJacob();
 		std::exception invalidArgumentException();
 		std::exception maxUnsignedIntException();
 

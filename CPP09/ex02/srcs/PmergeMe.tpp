@@ -67,7 +67,7 @@ void PmergeMe<container, pairs_container>::parseArgv(char **argv)
 template <typename container, typename pairs_container>
 void PmergeMe<container, pairs_container>::convertToVectorPair(int argc, char **argv)
 {
-	for(int i = 1; i <= argc; i += 2)
+	for(int i = 1; i <= argc - 1; i += 2)
 	{
 		if(argv[i + 1])
 			_pairs.push_back(std::pair<unsigned int, unsigned int>
@@ -165,7 +165,8 @@ template <typename container, typename pairs_container>
 size_t PmergeMe<container, pairs_container>::insertByJacob()
 {
 	size_t i;
-	for(i = 0; _jacobsthal[i] <= _pairs.size() ; i++)
+	binaryInsertion(_pairs[0].first);
+	for(i = 1; _jacobsthal[i] <= _pairs.size() ; i++)
 		for(unsigned int j = _jacobsthal[i]; j > _jacobsthal[i - 1]; j--)
 			binaryInsertion(_pairs[j - 1].first);
 	return i;
@@ -214,7 +215,7 @@ void PmergeMe<container, pairs_container>::sort(int argc, char **argv)
 	try
 	{
 		parseArgv(argv);
-		sortNumber(argc - 1, argv);
+		sortNumber(argc, argv);
 	}
 	catch(std::exception const& e)
 	{
@@ -265,9 +266,9 @@ void PmergeMe<container, pairs_container>::isSorted()
 {
 	for(size_t i = 0; i < _sortedContainer.size() - 1; i++)
 		if(_sortedContainer[i] > _sortedContainer[i + 1])
-			cout << "Error : Sorting fail." << endl;
+			cout << endl << "Error : Sorting fail." << endl << endl;
 	if(_sortedContainer.size() != (_pairs.size() * 2) + _stragglerStatus ? 1 : 0)
-		cout << "Error : Missing numbers" << endl;
+		cout << endl << "Error : Missing numbers" << endl << endl;
 }
 
 #endif
