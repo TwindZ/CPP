@@ -19,37 +19,37 @@ class PmergeMe
 		PmergeMe & operator=(PmergeMe const& Copy);
 		~PmergeMe();
 
-		void sort(int argc, char **argv);
+		void sort(int const& argc, char **argv);
 	
 	private:
 
 		PmergeMe();
-		void convertToVectorPair(int argc, char **argv);
+
+		void convertToVectorPair(int const& argc, char **argv);
 		void sortEachPair();
 		void sortBySecond();
 		void addSecondToSorted();
-		void binaryInsertion(unsigned int first);
+		void binaryInsertion(unsigned int const& first);
 
 		PmergeMe<container, pairs_container>::container_it
-		findRangeMiddle(container_it begin, container_it end);
+		findRangeMiddle(container_it const& begin, container_it const& end)const;
 
-		void precisionInsert(unsigned int first, container_it middle);
+		void precisionInsert(unsigned int const& first, container_it const& middle);
 		void mergeToSorted();
-		void sortNumber(int argc, char **argv);
-		void createJacobNumber(size_t size);
-		void createJacobVector(size_t size);
+		void sortNumbers(int const& argc, char **argv);
+		void createJacobVector(size_t const& size);
 		size_t insertByJacob();
-		void insertRemain(size_t i);
-		void parseArgv(char **argv);
-		void checkMaxUInt(unsigned long number);
-		void isSorted();
+		void insertRemain(size_t const& i);
+		void parseArgv(char **argv)const;
+		void checkMaxUInt(unsigned long const& number)const;
 		void algo();
-		void printSorted(double time_elapsed);
-		void printUnsorted(char **argv);
-		void printPairs();
-		void printJacob();
-		std::exception invalidArgumentException();
-		std::exception maxUnsignedIntException();
+		void isSorted()const;
+		void printSorted(double const& time_elapsed)const;
+		void printUnsorted(char **argv)const;
+		void printPairs()const;
+		void printJacob()const;
+		std::exception invalidArgumentException()const;
+		std::exception maxUnsignedIntException()const;
 
 
 		pairs_container				_pairs;

@@ -14,9 +14,9 @@ int main(int argc, char **argv)
 		cerr << "Usage : ./PmergeMe <numbers (ex : 2 6 8 4 77 5 999)>" << endl;
 	}
 	PmergeMe<std::vector<unsigned long>, std::vector
-	< std::pair <unsigned long, unsigned long> > > pmergeMe2("vector");
+	< std::pair <unsigned long, unsigned long> > > pmergeMe2("Vector");
 	pmergeMe2.sort(argc, argv);
 	PmergeMe<std::deque<unsigned long>, std::deque
-	< std::pair <unsigned long, unsigned long> > > pmergeMe("deque");
+	< std::pair <unsigned long, unsigned long> > > pmergeMe("Deque");
 	pmergeMe.sort(argc, argv);
 }
