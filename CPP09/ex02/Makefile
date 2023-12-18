@@ -55,6 +55,7 @@ clean:
 fclean: clean
 
 	@rm -f $(NAME)
+	@rm -f output.txt
 	@echo "${RED}$(NAME) EXECUTABLE DELETED${NC}"
 
 bonus: re
