@@ -25,9 +25,6 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "${GREEN}$(NAME) COMPILED${NC}"
 
-fail: re
-	./$(NAME) `jot -r 10 0 100 | tr '\n' ' '` 99999999999999
-
 run: re
 
 	@echo "${GREEN}$(NAME) RUN${NC}"
