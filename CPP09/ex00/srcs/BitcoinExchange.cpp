@@ -89,7 +89,7 @@ void BitcoinExchange::mapingInput()
 		std::stringstream ss(line);
 		char separator;
 		if(!(ss >> date >> separator >> value) || separator != '|')
-			cerr << "Error: Missing Date or Value information : " << date << endl;
+			cerr << "Error: Invalid input date or value  (YYYY-MM-DD | Value) : " << date << endl;
 		else if(!isDecimalValueFormatValid(value))
 			cerr << "Error: Invalid decimal number format: " << date << endl;
 		else if(!isDateValid(date) || !isValueValid(value))
@@ -159,18 +159,19 @@ void	BitcoinExchange::calculateOutput(string const& date, string const& value)co
 	if (it == _csvData.end())
 	{
 		it = _csvData.lower_bound(date);
-		it--;
+		if(it != _csvData.begin())
+			it--;
 	}
 	double rate = it->second;
 	string rateDate = it->first;
 	double multiplication = std::stod(value) * rate;
-	cout << date << " : "<< std::stod(value) << " * " << rate << "(" ;
-	cout << std::stod(rateDate) << ") = " << multiplication << endl;
+	cout << date << " : " << std::fixed << std::setprecision(8) << std::stod(value) << " * " << std::setprecision(2) << rate << "(" ;
+	cout << rateDate << ") = " << std::setprecision(2) << multiplication << endl;
 }
 
 std::exception BitcoinExchange::failToOpenFileException()
 {
-	throw std::runtime_error("Fatal : Fail to open file exception.");
+	throw std::runtime_error("Error : Fail to open file exception.");
 }
 
 void BitcoinExchange::printCsv()
