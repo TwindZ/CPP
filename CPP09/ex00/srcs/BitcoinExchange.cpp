@@ -140,6 +140,8 @@ bool	BitcoinExchange::isDateValid(string const& date)const
 	char separator1, separator2;
 	std::istringstream ss(date);
 	ss >> year >> separator1 >> month >> separator2 >> day;
+	if (year < 2009 || (year <= 2009 && month < 01) || (year <= 2009 && month <= 01 && day < 02))
+		return false;
 	if (ss.fail() || separator1 != '-' || separator2 != '-' || year < 0 || month < 1 || month > 12 || day < 1 || day > 31)
 		return false;
 	bool leap_year = isLeapYear(year);
@@ -159,8 +161,7 @@ void	BitcoinExchange::calculateOutput(string const& date, string const& value)co
 	if (it == _csvData.end())
 	{
 		it = _csvData.lower_bound(date);
-		if(it != _csvData.begin())
-			it--;
+		it--;
 	}
 	double rate = it->second;
 	string rateDate = it->first;
