@@ -165,7 +165,7 @@ template <typename container, typename pairs_container>
 size_t PmergeMe<container, pairs_container>::insertByJacob()
 {
 	size_t i;
-	binaryInsertion(_pairs[0].first);
+	_sortedContainer.insert(_sortedContainer.begin(), _pairs[0].first);
 	for(i = 1; _jacobsthal[i] <= _pairs.size() ; i++)
 		for(unsigned int j = _jacobsthal[i]; j > _jacobsthal[i - 1]; j--)
 			binaryInsertion(_pairs[j - 1].first);

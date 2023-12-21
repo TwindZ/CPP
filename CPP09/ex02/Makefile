@@ -25,21 +25,10 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "${GREEN}$(NAME) COMPILED${NC}"
 
-run: re
+test: re
 
 	@echo "${GREEN}$(NAME) RUN${NC}"
-	rm -rf output.txt
-	./$(NAME) 3 2 1
-	# ./$(NAME) `jot -r 10 0 100 | tr '\n' ' '` >> output.txt
-	# ./$(NAME) `jot -r 15 0 100 | tr '\n' ' '` >> output.txt
-	# ./$(NAME) `jot -r 50 0 500 | tr '\n' ' '` >> output.txt
-	# ./$(NAME) `jot -r 55 0 500 | tr '\n' ' '` >> output.txt
-	# ./$(NAME) `jot -r 100 0 1000 | tr '\n' ' '` >> output.txt
-	# ./$(NAME) `jot -r 111 0 1000 | tr '\n' ' '` >> output.txt
-	# ./$(NAME) `jot -r 1000 0 10000 | tr '\n' ' '` >> output.txt
-	# ./$(NAME) `jot -r 1111 0 10000 | tr '\n' ' '` >> output.txt
-	# ./$(NAME) `jot -r 3500 0 100000 | tr '\n' ' '` >> output.txt
-	# ./$(NAME) `jot -r 3555 0 100000 | tr '\n' ' '` >> output.txt
+	./test.sh
 
 leaks: re 
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
@@ -60,4 +49,4 @@ bonus: re
 
 re: fclean all
 
-.PHONY: all clean fclean bonus re run
+.PHONY: all clean fclean bonus re test
