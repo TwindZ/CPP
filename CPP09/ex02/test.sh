@@ -72,7 +72,7 @@ run_command ./PmergeMe $(jot -r 3555 0 100000 | tr '\n' ' ')
 echo "" >> "$output_file"
 
 # Command 16
-run_command ./PmergeMe $(jot -r 5000 0 100000 | tr '\n' ' ') #fail too high
+run_command ./PmergeMe $(jot -r 4001 0 100000 | tr '\n' ' ') #fail too high
 echo "" >> "$output_file"
 
 # Command 17
@@ -85,6 +85,18 @@ echo "" >> "$output_file"
 
 # Command 19
 run_command ./PmergeMe 5 4 7 8 9 999999999999999
+echo "" >> "$output_file"
+
+# Command 20
+run_command ./PmergeMe 5 4 7 8 9 9 9 9 9 8 7 555 66 77 88 44 55 78 67 
+echo "" >> "$output_file"
+
+# Command 21
+run_command ./PmergeMe 5 4 7 8 9 9 9 9 9 8 7 555 66 77 88 44 55 78 67 4294967296 #max uint32 + 1
+echo "" >> "$output_file"
+
+# Command 22
+run_command ./PmergeMe 5 4 7 8 9 9 9 9 9 8 7 555 66 77 88 44 55 78 67 4294967295 #max uint32
 echo "" >> "$output_file"
 
 echo "################# TOUTES LES COMMANDES ONT ÉTÉ EXÉCUTÉES AVEC SUCCÈS. ###############" >> "$output_file"

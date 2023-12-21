@@ -279,9 +279,9 @@ void PmergeMe<container, pairs_container>::isSorted()const
 {
 	for(size_t i = 0; i < _sortedContainer.size() - 1; i++)
 		if(_sortedContainer[i] > _sortedContainer[i + 1])
-			cout << endl << "Error : Sorting fail." << endl << endl;
+			cout << endl << "########## Error : Sorting fail.##########" << endl << endl;
 	if(_sortedContainer.size() != (_pairs.size() * 2) + _stragglerStatus ? 1 : 0)
-		cout << endl << "Error : Missing numbers" << endl << endl;
+		cout << endl << "##########Error : Missing numbers############" << endl << endl;
 }
 
 #endif
