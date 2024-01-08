@@ -16,7 +16,7 @@ class PmergeMe
 		typedef typename container::iterator container_it;
 		PmergeMe(std::string type);
 		PmergeMe(PmergeMe const& Copy);
-		PmergeMe & operator=(PmergeMe const& Copy);
+		PmergeMe & operator=(PmergeMe const& copy);
 		~PmergeMe();
 
 		void sort(int const& argc, char **argv);

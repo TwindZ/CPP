@@ -39,8 +39,8 @@ class BitcoinExchange
 	public:
 		
 		BitcoinExchange();
-		BitcoinExchange(BitcoinExchange const& Copy);
-		BitcoinExchange & operator=(BitcoinExchange const& Copy);
+		BitcoinExchange(BitcoinExchange const& copy);
+		BitcoinExchange & operator=(BitcoinExchange const& copy);
 		~BitcoinExchange();
 		void exchanger(char *argv);
 

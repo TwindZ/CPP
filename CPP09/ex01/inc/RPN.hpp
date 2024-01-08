@@ -19,8 +19,8 @@ class RPN
 	public:
 
 		RPN();
-		RPN(RPN const& Copy);
-		RPN & operator=(RPN const& Copy);
+		RPN(RPN const& copy);
+		RPN & operator=(RPN const& copy);
 		~RPN();
 
 		void execute(std::string const& arg);
